@@ -1,0 +1,14 @@
+.finalizada {
+    color: gray;
+    text-decoration: line-through;
+}
+
+.form-alta {
+    /*max-width: 600px;*/
+    display: flex;
+    flex-direction: column;
+}
+
+input, textarea {
+    margin-bottom: 15px;
+}
