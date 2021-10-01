@@ -26,7 +26,7 @@ class HomeView{
     }
 
     function showHome(){
-        $this->usuarioLogueadoHelper->usuarioLogueado();
+        $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->display('templates/home.tpl');
     }

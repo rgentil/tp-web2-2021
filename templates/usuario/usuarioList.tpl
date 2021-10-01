@@ -15,8 +15,10 @@
                 {foreach from=$usuarios item=$usuario}
                     <li class="list-group-item">
                         <a href="usuario/{$usuario->id_usuario}">{$usuario->nombre}</a> - Rol {$usuario->rol}
+                        {if $usuario_codigo != $usuario->codigo}
                             - 
                             <a class="btn btn-outline-danger" href="deleteUsuario/{$usuario->id_usuario}">Borrar</a> 
+                        {/if}
                             - 
                             <a class="btn btn-outline-success" href="usuarioCrud/{$usuario->id_usuario}">Actualizar</a>
                     </li>

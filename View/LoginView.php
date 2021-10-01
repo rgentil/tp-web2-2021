@@ -28,7 +28,7 @@ class LoginView{
     function showLogin($mensaje = ""){
         $this->smarty->assign('usuario_logueado',null);
         $this->smarty->assign('titulo_header','Aeródromo');
-        $this->smarty->assign('titulo_login','Bienvenido, ingrese por favor con código y password de usuario');
+        $this->smarty->assign('titulo_login','Ingrese código y password de usuario para iniciar sesión');
         $this->smarty->assign('mensaje',$mensaje);
         $this->smarty->assign('mensajeRegExitoso',null);
         $this->smarty->display('templates/login.tpl');

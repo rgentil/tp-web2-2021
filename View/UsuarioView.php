@@ -14,8 +14,13 @@ class UsuarioView{
         if(!isset($_SESSION)){ 
             session_start(); 
         } 
+        $this->smarty->assign('admin',false);
         if (isset($_SESSION["codigo"]) && !empty($_SESSION["codigo"])){
-            $this->smarty->assign('usuario_logueado',$_SESSION["codigo"]);
+            $this->smarty->assign('usuario_logueado',$_SESSION["nombre"]);
+            $this->smarty->assign('usuario_codigo',$_SESSION["codigo"]);
+            if ($_SESSION["rol"] == "Admin"){
+                $this->smarty->assign('admin',true);
+            }
         }else{
             $this->smarty->assign('usuario_logueado',null);
         }
@@ -64,7 +69,7 @@ class UsuarioView{
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->assign('usuario_logueado',null);
         $this->smarty->assign('titulo_login','Bienvenido, ingrese por favor con código y password de usuario');
-        $this->smarty->assign('mensajeRegExitoso','Registro exitoso. Ahora logueese');
+        $this->smarty->assign('mensajeRegExitoso','Registro exitoso.');
         $this->smarty->assign('mensaje',null);
         $this->smarty->display('templates/login.tpl');
     }
