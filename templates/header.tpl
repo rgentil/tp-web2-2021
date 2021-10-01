@@ -10,3 +10,16 @@
         <title>{$titulo_header}</title>
     </head>
     <body>
+        {if $usuario_logueado != null}
+            <div class="container">
+                <div class="row mt-4"> 
+                    <div class="col-md-8">
+                        {$usuario_logueado} <a class="btn btn-outline-primary" href="logout" role="button">Log Out</a>                
+                    <div>
+                </div>
+            </div>    
+        {/if}
+        
+    </div>
+
+    

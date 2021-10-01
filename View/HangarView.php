@@ -9,21 +9,48 @@ class HangarView{
     function __construct() {
         $this->smarty = new Smarty();
     }
+    
+    function usuarioLogueado(){
+        if(!isset($_SESSION)){ 
+            session_start(); 
+        } 
+        if (isset($_SESSION["codigo"]) && !empty($_SESSION["codigo"])){
+            $this->smarty->assign('usuario_logueado',$_SESSION["nombre"]);
+        }else{
+            $this->smarty->assign('usuario_logueado',null);
+        }
+    }
+    
 
     function showAll($hangares){
+        $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Listado de Hangares');
         $this->smarty->assign('titulo_listado','Listado de Hangares');
         $this->smarty->assign('titulo_crear','Crear Hangar');
         $this->smarty->assign('hangares',$hangares);
-        $this->smarty->display('templates/hangarList.tpl');
+        $this->smarty->display('templates/hangar/hangarList.tpl');
     }
 
     function showHangar($hangar){
+        $this->usuarioLogueado();
         $titulo = 'Hangar ' . $hangar->nombre;
         $this->smarty->assign('titulo_header',$titulo);
         $this->smarty->assign('hangar',$hangar);
-        $this->smarty->display('templates/hangarDetail.tpl');
+        $this->smarty->display('templates/hangar/hangarDetail.tpl');
+    }
 
+    function showHangarCrud($hangar = null){
+        $this->usuarioLogueado();
+        if ($hangar != null && !empty($hangar)){
+            $titulo = 'Hangar ' . $hangar->nombre;
+            $this->smarty->assign('titulo_header',$titulo);
+            $this->smarty->assign('titulo_crear',$titulo);
+            $this->smarty->assign('hangar',$hangar);
+        }else{
+            $this->smarty->assign('titulo_header','Crear Hangar');
+            $this->smarty->assign('titulo_crear','Crear Hangar');
+        }        
+        $this->smarty->display('templates/hangar/hangarCrud.tpl');
     }
 
 }

@@ -9,14 +9,16 @@ class HangarModel{
     }
 
     function getAll(){
-        $sentencia = $this->db->prepare('select h.id_hangar, h.nombre, h.ubicacion, h.capacidad from hangar h');
+        $sentencia = $this->db->prepare('SELECT h.id_hangar, h.nombre, h.ubicacion, h.capacidad, a.id_avion, COUNT(a.id_avion) AS cantAviones
+                                         FROM hangar h LEFT JOIN avion a ON (a.id_hangar = h.id_hangar)
+                                         GROUP BY h.id_hangar');
         $sentencia->execute();
         $hangares = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $hangares;
     } 
 
     function getById($id){
-        $sentencia = $this->db->prepare('select h.id_hangar, h.nombre, h.ubicacion, h.capacidad from hangar h where h.id_hangar = ?');
+        $sentencia = $this->db->prepare('SELECT h.id_hangar, h.nombre, h.ubicacion, h.capacidad FROM hangar h WHERE h.id_hangar = ?');
         $sentencia->execute(array($id));
         $hangar = $sentencia->fetch(PDO::FETCH_OBJ);
         return $hangar;
@@ -25,6 +27,7 @@ class HangarModel{
     function insert($nombre, $ubicacion, $capacidad){
         $sentencia = $this->db->prepare('INSERT INTO hangar(nombre, ubicacion, capacidad) VALUES(?, ?, ?)');
         $sentencia->execute(array($nombre, $ubicacion, $capacidad));
+        return $this->db->lastInsertId();
     }
 
     function delete($id){
@@ -34,7 +37,8 @@ class HangarModel{
 
     function update($id,$nombre){
         $sentencia = $this->db->prepare("UPDATE hangar SET nombre=? WHERE id_hangar=?");
-        $sentencia->execute(array($id,$nombre));
+        $sentencia->execute(array($nombre,$id));
+        return $this->db->lastInsertId();
     }
 
 }

@@ -2,10 +2,10 @@
 
 require_once 'libs/smarty-3.1.39/libs/Smarty.class.php';
 
-class HomeView{
+class LoginView{
 
     private $smarty;
-    
+
     function __construct() {
         $this->smarty = new Smarty();
     }
@@ -25,8 +25,17 @@ class HomeView{
         }
     }
 
+    function showLogin($mensaje = ""){
+        $this->smarty->assign('usuario_logueado',null);
+        $this->smarty->assign('titulo_header','Aeródromo');
+        $this->smarty->assign('titulo_login','Bienvenido, ingrese por favor con código y password de usuario');
+        $this->smarty->assign('mensaje',$mensaje);
+        $this->smarty->assign('mensajeRegExitoso',null);
+        $this->smarty->display('templates/login.tpl');
+    }
+
     function showHome(){
-        $this->usuarioLogueadoHelper->usuarioLogueado();
+        $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->display('templates/home.tpl');
     }

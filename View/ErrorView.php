@@ -10,7 +10,19 @@ class ErrorView{
         $this->smarty = new Smarty();
     }
 
+    function usuarioLogueado(){
+        if(!isset($_SESSION)){ 
+            session_start(); 
+        } 
+        if (isset($_SESSION["codigo"]) && !empty($_SESSION["codigo"])){
+            $this->smarty->assign('usuario_logueado',$_SESSION["nombre"]);
+        }else{
+            $this->smarty->assign('usuario_logueado',null);
+        }
+    }
+
     function showError404(){
+        $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Error 404 - Volando cielos desconocidos - ');
         $this->smarty->display('templates/error.tpl');
     }
