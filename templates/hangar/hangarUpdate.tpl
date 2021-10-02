@@ -5,32 +5,27 @@
     <div class="row mt-4">
         <h1>{$titulo_update}</h1>
         <form action="updateHangar" method="post">
+                
+            <input type="hidden" class="form-control" id="id" name="id" value={$hangar->id_hangar} required>
             
-            <div class="row mb-3">
-                <label for="id" class="col-sm-2 col-form-label">Id</label>
-                <div class="col-sm-10">
-                    <input type="text" class="form-control" id="id" name="id" value={$hangar->id_hangar} required>
-                </div>
-            </div>
-
             <div class="row mb-3">
                 <label for="idNombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="idNombre" name="nombre" value={$hangar->nombre} required>
+                    <input type="text" class="form-control" id="idNombre" name="nombre" value="{$hangar->nombre}" required>
                 </div>
             </div>
 
             <div class="row mb-3">
                 <label for="idUbicacion" class="col-sm-2 col-form-label">Ubicación</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="idUbicacion" name="ubicacion" value={$hangar->ubicacion} required>
+                    <input type="text" class="form-control" id="idUbicacion" name="ubicacion" value="{$hangar->ubicacion}" required>
                 </div>
             </div>
             
             <div class="row mb-3">
                 <label for="idCapacidad" class="col-sm-2 col-form-label">Capacidad</label>
                 <div class="col-sm-10">
-                    <input type="number" class="form-control" id="idCapacidad" name="capacidad" value={$hangar->capacidad} required>
+                    <input type="number" class="form-control" id="idCapacidad" name="capacidad" value="{$hangar->capacidad}" required>
                 </div>
             </div>
             

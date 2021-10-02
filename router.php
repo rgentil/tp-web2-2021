@@ -90,7 +90,10 @@ switch ($params[0]) {
         break;   
     case 'createHangar': 
         $hangar->createHangar(); 
-        break;     
+        break;    
+    case 'updateHangar': 
+        $hangar->updateHangar(); 
+        break;  
     case 'deleteHangar': 
         $hangar->deleteHangar($params[1]); 
         break;    
@@ -103,15 +106,21 @@ switch ($params[0]) {
         $avion->showById($params[1]); 
         break;
     case 'avionAlta': 
+        $avion->showAlta(); 
+        break;
+    case 'avionUpdate': 
         if (isset($params[1]) && !empty($params[1])){
-            $avion->showAlta($params[1]); 
+            $avion->showUpdate($params[1]); 
         }else{
-            $avion->showAlta(); 
+            $error->showError404();
         }
         break;
     case 'createAvion': 
         $avion->createAvion(); 
         break;     
+    case 'updateAvion': 
+        $hangar->updateAvion(); 
+        break;  
     case 'deleteAvion': 
         $avion->deleteAvion($params[1]); 
         break;     

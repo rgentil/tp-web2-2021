@@ -38,7 +38,6 @@ class HangarModel{
     function update($nombre,$ubicacion,$capacidad,$id){
         $sentencia = $this->db->prepare("UPDATE hangar SET nombre=?, ubicacion=?, capacidad=? WHERE id_hangar=?");
         $sentencia->execute(array($nombre,$ubicacion,$capacidad,$id));
-        return $this->db->lastInsertId();
     }
 
 }
