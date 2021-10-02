@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 30-09-2021 a las 13:30:17
+-- Tiempo de generación: 02-10-2021 a las 14:38:49
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -77,7 +77,8 @@ INSERT INTO `hangar` (`id_hangar`, `nombre`, `ubicacion`, `capacidad`) VALUES
 (4, 'Hangar 4', 'Centro 1-1', 5),
 (5, 'Hangar 5', 'Norte 1-3', 2),
 (6, 'Hangar 6', 'Centro 1-2', 3),
-(7, 'Hangar 7', 'Sur 1-3', 2);
+(7, 'Hangar 7', 'Sur 1-3', 2),
+(11, 'hangar para hacer cosas', 'por ahi dando vueltas', 12);
 
 -- --------------------------------------------------------
 
@@ -89,9 +90,20 @@ CREATE TABLE `usuario` (
   `id_usuario` int(11) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `codigo` varchar(50) NOT NULL,
-  `clave` varchar(15) NOT NULL,
+  `password` varchar(500) NOT NULL,
   `rol` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `usuario`
+--
+
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `codigo`, `password`, `rol`) VALUES
+(4, 'Ricardo', 'admin', '$2y$10$SrR.vnHy/Dc14obSWNEiyeovf5eKS78DwJsqDpG2sPMpy9zXZAkCO', 'Admin'),
+(7, 'Hernesto', 'hernesto', '$2y$10$ofGgZkTTSEuNnzIWlYCBse8IcF4xfffinGG0sfmVC9iExhFIyNYB6', 'Admin'),
+(8, 'comun', 'comun', '$2y$10$WtDyyLtMAdNeRbcgCtM9l.ApxTCAGi6R2d9o4w8du8kvvqLMn1Fsa', 'Comun'),
+(9, 'El loco abreu', 'crack', '$2y$10$ZpJdlPqvblLndhPDpdcTTeaQzRyCsQ3XVXoM2iFXWa6.YZEumxiiC', 'Admin'),
+(10, 'Testeador de testeo', 'tester', '$2y$10$QBYzedE5qTXGdQvKQfspeuvrHJMgpsHGGUsqdKx3vOPUfE0Ag3Q2G', 'Comun');
 
 --
 -- Índices para tablas volcadas
@@ -123,19 +135,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `avion`
 --
 ALTER TABLE `avion`
-  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 
 --
 -- AUTO_INCREMENT de la tabla `hangar`
 --
 ALTER TABLE `hangar`
-  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
