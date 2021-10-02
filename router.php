@@ -57,11 +57,11 @@ switch ($params[0]) {
     case 'usuario': 
         $usuario->showById($params[1]); 
         break;
-    case 'usuarioCrud': 
+    case 'usuarioAlta': 
         if (isset($params[1]) && !empty($params[1])){
-            $usuario->showCrud($params[1]); 
+            $usuario->showAlta($params[1]); 
         }else{
-            $usuario->showCrud(); 
+            $usuario->showAlta(); 
         }
         break;   
     case 'createUsuario': 
@@ -78,11 +78,14 @@ switch ($params[0]) {
     case 'hangar': 
         $hangar->showById($params[1]); 
         break;
-    case 'hangarCrud': 
+    case 'hangarAlta': 
+        $hangar->showAlta();
+        break;   
+    case 'hangarUpdate': 
         if (isset($params[1]) && !empty($params[1])){
-            $hangar->showCrud($params[1]); 
+            $hangar->showUpdate($params[1]); 
         }else{
-            $hangar->showCrud(); 
+            $error->showError404();
         }
         break;   
     case 'createHangar': 
@@ -99,11 +102,11 @@ switch ($params[0]) {
     case 'avion': 
         $avion->showById($params[1]); 
         break;
-    case 'avionCrud': 
+    case 'avionAlta': 
         if (isset($params[1]) && !empty($params[1])){
-            $avion->showCrud($params[1]); 
+            $avion->showAlta($params[1]); 
         }else{
-            $avion->showCrud(); 
+            $avion->showAlta(); 
         }
         break;
     case 'createAvion': 
@@ -115,6 +118,8 @@ switch ($params[0]) {
     case 'avionesHangar': 
         $avion->showByIdHangar($params[1]); 
         break;
+
+    //ERROR        
     default: 
         $error->showError404(); 
         break;

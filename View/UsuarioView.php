@@ -43,7 +43,7 @@ class UsuarioView{
         $this->smarty->display('templates/usuario/usuarioDetail.tpl');
     }
 
-    function showUsuarioCrud($usuarios = null){
+    function showUsuarioAlta($usuarios = null){
         $this->usuarioLogueado();
         if ($usuarios != null && !empty($usuarios)){
             $titulo = 'Usuario ' . $usuarios->nombre;
@@ -54,7 +54,7 @@ class UsuarioView{
             $this->smarty->assign('titulo_header','Crear Usuario');
             $this->smarty->assign('titulo_crear','Crear Usuario');
         }        
-        $this->smarty->display('templates/usuario/usuarioCrud.tpl');
+        $this->smarty->display('templates/usuario/usuarioAlta.tpl');
     }
 
     function showRegistro($mensaje = ""){

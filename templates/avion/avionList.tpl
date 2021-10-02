@@ -4,7 +4,7 @@
 
     <div class="row mt-4">
         <div class="col">
-            <a class="btn btn-outline-primary" href="avionCrud" role="button">Crear</a>
+            <a class="btn btn-outline-primary" href="avionAlta" role="button">Crear</a>
         </div>
     </div>
     
@@ -18,7 +18,7 @@
                          - 
                         <a class="btn btn-outline-danger" href="deleteAvion/{$avion->id_avion}">Borrar</a>
                          - 
-                        <a class="btn btn-outline-success" href="avionCrud/{$avion->id_avion}">Actualizar</a>
+                        <a class="btn btn-outline-success" href="avionAlta/{$avion->id_avion}">Actualizar</a>
                     </li>
                 {/foreach}
             </ul>

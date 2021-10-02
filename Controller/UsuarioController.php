@@ -28,13 +28,13 @@ class UsuarioController {
         $this->view->showUsuario($usuario);
     }
 
-    public function showCrud($id=null){
+    public function showAlta($id=null){
         $this->controlLoginHelper->checkLoggedIn();
         if (!empty($id)){
             $usuario = $this->model->getById($id);        
-            $this->view->showUsuarioCrud($usuario);
+            $this->view->showUsuarioAlta($usuario);
         }else{
-            $this->view->showUsuarioCrud();
+            $this->view->showUsuarioAlta();
         }        
     }  
 

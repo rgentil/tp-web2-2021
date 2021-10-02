@@ -42,7 +42,7 @@ class AvionView{
         $this->smarty->display('templates/avion/avionDetail.tpl');
     }
 
-    function showAvionCrud($avion,$hangaresDisponibles){
+    function showAvionAlta($avion,$hangaresDisponibles){
         $this->usuarioLogueado();
         $this->smarty->assign('hangaresDisponibles',$hangaresDisponibles);
 
@@ -55,6 +55,6 @@ class AvionView{
             $this->smarty->assign('titulo_header','Crear Avión');
             $this->smarty->assign('titulo_crear','Crear Avión');
         }        
-        $this->smarty->display('templates/avion/avionCrud.tpl');
+        $this->smarty->display('templates/avion/avionAlta.tpl');
     }
 }

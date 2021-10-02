@@ -28,19 +28,27 @@ class HangarController {
         $this->view->showHangar($hangar);
     }
 
-    public function showCrud($id=null){
+    public function showAlta(){
         $this->controlLoginHelper->checkLoggedIn();
-        if (!empty($id)){
-            $hangar = $this->model->getById($id);        
-            $this->view->showHangarCrud($hangar);    
-        }else{
-            $this->view->showHangarCrud();
-        }        
+        $this->view->showHangarAlta();
+    }  
+
+    public function showUpdate($id){
+        $this->controlLoginHelper->checkLoggedIn();
+        $hangar = $this->model->getById($id);        
+        $this->view->showHangarUpdate($hangar);    
     }  
 
     function createHangar(){
         $this->controlLoginHelper->checkLoggedIn();
         $id = $this->model->insert($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad']);
+        $this->showById($id);
+    }
+
+    function updateHangar(){
+        $id = $_POST['id'];
+        $this->controlLoginHelper->checkLoggedIn();
+        $this->model->update($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad'],$id);
         $this->showById($id);
     }
 

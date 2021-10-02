@@ -42,18 +42,22 @@ class HangarView{
         $this->smarty->display('templates/hangar/hangarDetail.tpl');
     }
 
-    function showHangarCrud($hangar = null){
+    function showHangarAlta(){
+        $this->usuarioLogueado();
+        $this->smarty->assign('titulo_header','Crear Hangar');
+        $this->smarty->assign('titulo_crear','Crear Hangar');
+        $this->smarty->display('templates/hangar/hangarAlta.tpl');
+    }
+
+    function showHangarUpdate($hangar){
         $this->usuarioLogueado();
         if ($hangar != null && !empty($hangar)){
             $titulo = 'Hangar ' . $hangar->nombre;
             $this->smarty->assign('titulo_header',$titulo);
-            $this->smarty->assign('titulo_crear',$titulo);
+            $this->smarty->assign('titulo_update',$titulo);
             $this->smarty->assign('hangar',$hangar);
-        }else{
-            $this->smarty->assign('titulo_header','Crear Hangar');
-            $this->smarty->assign('titulo_crear','Crear Hangar');
-        }        
-        $this->smarty->display('templates/hangar/hangarCrud.tpl');
+            $this->smarty->display('templates/hangar/hangarUpdate.tpl');
+        }
     }
 
 }

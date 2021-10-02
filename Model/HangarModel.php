@@ -18,7 +18,7 @@ class HangarModel{
     } 
 
     function getById($id){
-        $sentencia = $this->db->prepare('SELECT h.id_hangar, h.nombre, h.ubicacion, h.capacidad FROM hangar h WHERE h.id_hangar = ?');
+        $sentencia = $this->db->prepare('SELECT id_hangar, nombre, ubicacion, capacidad FROM hangar WHERE id_hangar = ?');
         $sentencia->execute(array($id));
         $hangar = $sentencia->fetch(PDO::FETCH_OBJ);
         return $hangar;
@@ -35,9 +35,9 @@ class HangarModel{
         $sentencia->execute(array($id));
     }
 
-    function update($id,$nombre){
-        $sentencia = $this->db->prepare("UPDATE hangar SET nombre=? WHERE id_hangar=?");
-        $sentencia->execute(array($nombre,$id));
+    function update($nombre,$ubicacion,$capacidad,$id){
+        $sentencia = $this->db->prepare("UPDATE hangar SET nombre=?, ubicacion=?, capacidad=? WHERE id_hangar=?");
+        $sentencia->execute(array($nombre,$ubicacion,$capacidad,$id));
         return $this->db->lastInsertId();
     }
 

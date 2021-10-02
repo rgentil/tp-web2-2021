@@ -4,7 +4,7 @@
 
     <div class="row mt-4">
         <div class="col">
-            <a class="btn btn-outline-primary" href="usuarioCrud" role="button">Crear</a>
+            <a class="btn btn-outline-primary" href="usuarioAlta" role="button">Crear</a>
         </div>
     </div>
 
@@ -20,7 +20,7 @@
                             <a class="btn btn-outline-danger" href="deleteUsuario/{$usuario->id_usuario}">Borrar</a> 
                         {/if}
                             - 
-                            <a class="btn btn-outline-success" href="usuarioCrud/{$usuario->id_usuario}">Actualizar</a>
+                            <a class="btn btn-outline-success" href="usuarioAlta/{$usuario->id_usuario}">Actualizar</a>
                     </li>
                 {/foreach}
             </ul>

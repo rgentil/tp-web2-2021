@@ -34,7 +34,7 @@ class AvionController {
         $this->view->showAll($aviones);
     }
 
-    public function showCrud($id=null){
+    public function showAlta($id=null){
 
         $this->controlLoginHelper->checkLoggedIn();
 
@@ -42,9 +42,9 @@ class AvionController {
 
         if (!empty($id)){
             $avion = $this->model->getById($id);        
-            $this->view->showAvionCrud($avion,$hangaresDisponibles);
+            $this->view->showAvionAlta($avion,$hangaresDisponibles);
         }else{
-            $this->view->showAvionCrud(null,$hangaresDisponibles);
+            $this->view->showAvionAlta(null,$hangaresDisponibles);
         }        
     }  
     

@@ -4,7 +4,7 @@
 
     <div class="row mt-4">
         <div class="col">
-            <a class="btn btn-outline-primary" href="hangarCrud" role="button">Crear</a>
+            <a class="btn btn-outline-primary" href="hangarAlta" role="button">Crear</a>
         </div>
     </div>
 
@@ -19,7 +19,7 @@
                             - 
                             <a class="btn btn-outline-danger" href="deleteHangar/{$hangar->id_hangar}">Borrar</a> 
                             - 
-                            <a class="btn btn-outline-success" href="hangarCrud/{$hangar->id_hangar}">Actualizar</a>
+                            <a class="btn btn-outline-success" href="hangarUpdate/{$hangar->id_hangar}">Actualizar</a>
                         {else}
                             - 
                             <a class="btn btn-outline-info" href="avionesHangar/{$hangar->id_hangar}">Ver Aviones</a>
