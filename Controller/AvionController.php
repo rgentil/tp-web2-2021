@@ -34,23 +34,29 @@ class AvionController {
         $this->view->showAll($aviones);
     }
 
-    public function showAlta($id=null){
-
+    public function showAlta(){
         $this->controlLoginHelper->checkLoggedIn();
-
-        $hangaresDisponibles = $this->model->getHangaresDisponibles($id);
-
-        if (!empty($id)){
-            $avion = $this->model->getById($id);        
-            $this->view->showAvionAlta($avion,$hangaresDisponibles);
-        }else{
-            $this->view->showAvionAlta(null,$hangaresDisponibles);
-        }        
+        $hangaresDisponibles = $this->model->getHangaresDisponibles();
+        $this->view->showAvionAlta($hangaresDisponibles);
     }  
-    
+
+    public function showUpdate($id){
+        $this->controlLoginHelper->checkLoggedIn();
+        $hangaresDisponibles = $this->model->getHangaresDisponibles();
+        $avion = $this->model->getById($id);        
+        $this->view->showAvionUpdate($avion,$hangaresDisponibles);
+    }  
+
     function createAvion(){
         $this->controlLoginHelper->checkLoggedIn();
         $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
+        $this->showById($id);
+    }
+
+    function updateAvion(){
+        $this->controlLoginHelper->checkLoggedIn();
+        $id = $_POST['id'];
+        $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
         $this->showById($id);
     }
 

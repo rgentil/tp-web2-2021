@@ -40,7 +40,7 @@ class AvionModel {
         return $aviones;
     } 
 
-    function getHangaresDisponibles($id_avion){
+    function getHangaresDisponibles(){
         $sentencia = $this->db->prepare('SELECT h.id_hangar AS hIdHangar, h.nombre AS hNombre, h.ubicacion, h.capacidad 
                                             FROM hangar h');
         $sentencia->execute();
@@ -59,10 +59,9 @@ class AvionModel {
         $sentencia->execute(array($id));
     }
 
-    function update($id,$id_hangar){
-        $sentencia = $this->db->prepare("UPDATE avion SET id_hangar=? WHERE id_avion=?");
-        $sentencia->execute(array($id_hangar,$id));
-        return $this->db->lastInsertId();
+    function update($nombre, $fabricante, $tipo, $id_hangar,$id){
+        $sentencia = $this->db->prepare("UPDATE avion SET nombre=?, fabricante=?, tipo=?, id_hangar=? WHERE id_avion=?");
+        $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar,$id));
     }
 
 }

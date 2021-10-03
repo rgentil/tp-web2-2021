@@ -20,7 +20,7 @@
                             <a class="btn btn-outline-danger" href="deleteUsuario/{$usuario->id_usuario}">Borrar</a> 
                         {/if}
                             - 
-                            <a class="btn btn-outline-success" href="usuarioAlta/{$usuario->id_usuario}">Actualizar</a>
+                            <a class="btn btn-outline-success" href="usuarioUpdate/{$usuario->id_usuario}">Actualizar</a>
                     </li>
                 {/foreach}
             </ul>

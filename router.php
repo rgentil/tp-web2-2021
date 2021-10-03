@@ -58,15 +58,21 @@ switch ($params[0]) {
         $usuario->showById($params[1]); 
         break;
     case 'usuarioAlta': 
-        if (isset($params[1]) && !empty($params[1])){
-            $usuario->showAlta($params[1]); 
-        }else{
-            $usuario->showAlta(); 
-        }
+        $usuario->showAlta(); 
         break;   
+    case 'usuarioUpdate': 
+        if (isset($params[1]) && !empty($params[1])){
+            $usuario->showUpdate($params[1]); 
+        }else{
+            $error->showError404();
+        }
+        break;  
     case 'createUsuario': 
         $usuario->createUsuario(); 
-        break;     
+        break;    
+    case 'updateUsuario': 
+        $usuario->updateUsuario(); 
+        break;  
     case 'deleteUsuario': 
         $usuario->deleteUsuario($params[1]); 
         break;     
@@ -119,7 +125,7 @@ switch ($params[0]) {
         $avion->createAvion(); 
         break;     
     case 'updateAvion': 
-        $hangar->updateAvion(); 
+        $avion->updateAvion(); 
         break;  
     case 'deleteAvion': 
         $avion->deleteAvion($params[1]); 

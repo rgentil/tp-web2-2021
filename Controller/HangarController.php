@@ -46,8 +46,8 @@ class HangarController {
     }
 
     function updateHangar(){
-        $id = $_POST['id'];
         $this->controlLoginHelper->checkLoggedIn();
+        $id = $_POST['id'];
         $this->model->update($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad'],$id);
         $this->showById($id);
     }

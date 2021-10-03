@@ -43,18 +43,22 @@ class UsuarioView{
         $this->smarty->display('templates/usuario/usuarioDetail.tpl');
     }
 
-    function showUsuarioAlta($usuarios = null){
+    function showUsuarioAlta(){
         $this->usuarioLogueado();
-        if ($usuarios != null && !empty($usuarios)){
-            $titulo = 'Usuario ' . $usuarios->nombre;
+        $this->smarty->assign('titulo_header','Crear Usuario');
+        $this->smarty->assign('titulo_crear','Crear Usuario');
+        $this->smarty->display('templates/usuario/usuarioAlta.tpl');
+    }
+
+    function showUsuarioUpdate($usuario){
+        $this->usuarioLogueado();
+        if ($usuario != null && !empty($usuario)){
+            $titulo = 'Usuario ' . $usuario->nombre;
             $this->smarty->assign('titulo_header',$titulo);
             $this->smarty->assign('titulo_crear',$titulo);
-            $this->smarty->assign('usuario',$usuarios);
-        }else{
-            $this->smarty->assign('titulo_header','Crear Usuario');
-            $this->smarty->assign('titulo_crear','Crear Usuario');
-        }        
-        $this->smarty->display('templates/usuario/usuarioAlta.tpl');
+            $this->smarty->assign('usuario',$usuario);
+            $this->smarty->display('templates/usuario/usuarioUpdate.tpl');
+        }
     }
 
     function showRegistro($mensaje = ""){

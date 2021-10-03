@@ -16,6 +16,8 @@ class UsuarioController {
         $this->controlLoginHelper = new ControlLoginHelper(); 
     }
 
+    /*ABM DE USUARIO*/
+
     public function showAll(){
         $this->controlLoginHelper->checkLoggedIn();
         $usuarios = $this->model->getAll();
@@ -28,18 +30,15 @@ class UsuarioController {
         $this->view->showUsuario($usuario);
     }
 
-    public function showAlta($id=null){
+    public function showAlta(){
         $this->controlLoginHelper->checkLoggedIn();
-        if (!empty($id)){
-            $usuario = $this->model->getById($id);        
-            $this->view->showUsuarioAlta($usuario);
-        }else{
-            $this->view->showUsuarioAlta();
-        }        
-    }  
-
-    public function showRegistro(){
-        $this->view->showRegistro();
+        $this->view->showUsuarioAlta();
+    } 
+    
+    public function showUpdate($id){
+        $this->controlLoginHelper->checkLoggedIn();
+        $usuario = $this->model->getById($id);        
+        $this->view->showUsuarioUpdate($usuario);
     }  
 
     function createUsuario(){
@@ -48,6 +47,25 @@ class UsuarioController {
         $id = $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol']);
         $this->showById($id);
     }
+
+    function updateUsuario(){
+        $this->controlLoginHelper->checkLoggedIn();
+        $id = $_POST['id'];
+        //$passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
+        $this->model->update($_POST['nombre']/*, $_POST['codigo'], $passHasheado, $_POST['rol']*/, $id);
+        $this->showById($id);
+    }
+
+    function deleteUsuario($id){
+        $this->controlLoginHelper->checkLoggedIn();
+        $this->model->delete($id);
+        $this->showAll();
+    }
+
+    /*REGISTRO DE USUARIO*/
+    public function showRegistro(){
+        $this->view->showRegistro();
+    }  
 
     function registrarUsuario(){
         $id = $this->model->getUsuario($_POST['codigo']);
@@ -58,13 +76,5 @@ class UsuarioController {
             $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol']);
             $this->view->showLogin();
         }
-        
     }
-
-    function deleteUsuario($id){
-        $this->controlLoginHelper->checkLoggedIn();
-        $this->model->delete($id);
-        $this->showAll();
-    }
-
 }
