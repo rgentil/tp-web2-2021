@@ -42,7 +42,9 @@ class AvionModel {
 
     function getHangaresDisponibles(){
         $sentencia = $this->db->prepare('SELECT h.id_hangar AS hIdHangar, h.nombre AS hNombre, h.ubicacion, h.capacidad 
-                                            FROM hangar h');
+                                            FROM hangar h 
+                                            WHERE h.capacidad > (SELECT count(id_avion) FROM avion a WHERE a.id_hangar = h.id_hangar )'
+                                        );
         $sentencia->execute();
         $hangares = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $hangares;
