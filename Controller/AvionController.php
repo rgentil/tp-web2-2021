@@ -36,12 +36,14 @@ class AvionController {
 
     public function showAlta(){
         $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
         $hangaresDisponibles = $this->model->getHangaresDisponibles();
         $this->view->showAvionAlta($hangaresDisponibles);
     }  
 
     public function showUpdate($id){
         $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
         $hangaresDisponibles = $this->model->getHangaresDisponibles();
         $avion = $this->model->getById($id);        
         $this->view->showAvionUpdate($avion,$hangaresDisponibles);
@@ -49,12 +51,14 @@ class AvionController {
 
     function createAvion(){
         $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
         $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
         $this->showById($id);
     }
 
     function updateAvion(){
         $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
         $id = $_POST['id'];
         $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
         $this->showById($id);
@@ -62,6 +66,7 @@ class AvionController {
 
     function deleteAvion($id){
         $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
         $this->model->delete($id);
         $this->showAll();
     }

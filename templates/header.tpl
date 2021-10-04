@@ -20,7 +20,10 @@
                     <li class="nav-item"><a href="home" class="nav-link">Aeródromo</a></li>
                     <li class="nav-item"><a href="hangares" class="nav-link">Hangares</a></li>
                     <li class="nav-item"><a href="aviones" class="nav-link">Aviones</a></li>
-                    <li class="nav-item"><a href="usuarios" class="nav-link">Usuarios</a></li>
+                    {if $admin}
+                        <li class="nav-item"><a href="usuarios" class="nav-link">Usuarios</a></li>
+                    {/if}
+                    
                 </ul>
             {/if}
             <div class="col-md-3 text-end">
