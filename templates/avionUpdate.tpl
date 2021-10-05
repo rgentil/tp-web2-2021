@@ -30,7 +30,7 @@
             </div>
             
             <div class="row mb-3">
-                <label class="col-sm-2 col-form-label" for="idListHangares">Hangar</label>
+                <label class="col-sm-2 col-form-label" for="idListHangares">Hangar Disponible</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="idListHangares" name="idHangar" required>
                         <option selected>Seleccione hangar...</option>

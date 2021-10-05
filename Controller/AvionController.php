@@ -44,7 +44,7 @@ class AvionController {
     public function showUpdate($id){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $hangaresDisponibles = $this->model->getHangaresDisponibles();
+        $hangaresDisponibles = $this->model->getHangaresDisponibles($id);
         $avion = $this->model->getById($id);        
         $this->view->showAvionUpdate($avion,$hangaresDisponibles);
     }  
