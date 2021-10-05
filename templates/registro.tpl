@@ -33,9 +33,7 @@
                     <select class="form-select" id="idListRoles" name="rol" required>
                         <option selected>Seleccione un rol...</option>
                         <option value='Admin'>Administrador</option>
-                        <option value='Comun'>Vistante</option>
-                        <option value='Comun'>Tester</option>
-                        <option value='Admin'>Crack</option>
+                        <option value='Comun'>Común</option>
                     </select>
                 </div>
             </div>  
