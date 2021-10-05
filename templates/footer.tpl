@@ -3,9 +3,9 @@
 
 
     <footer class="pt-4 my-md-5 pt-md-5 border-top">
-        <div class="row">
+        <div class="row align-items-center justify-content-center">
             <div class="col-md-4">
-                <small class="d-block mb-3 text-muted">Trabajo especial para la materia Web 2, TUDAI - 2021</small>
+                <p class="d-block mb-3 text-muted">Trabajo especial para la materia Web 2, TUDAI - 2021</p>
             </div>      
 
             <div class="col-md-4">

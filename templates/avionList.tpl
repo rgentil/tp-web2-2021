@@ -1,7 +1,6 @@
 {include file='templates/header.tpl'}
 
-<div class="container">
-
+<div class="container ">
     {if $admin}
         <div class="row mt-4">
             <div class="col">

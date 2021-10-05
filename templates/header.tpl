@@ -15,7 +15,7 @@
             
             <div class="col-md-3 text-end">
                 <a href="home">
-                    <img class="mb-2" src="img/logo1.png" alt="Logo Git" width="50" height="50">
+                    <img class="mb-2" src="img/logo1.png" alt="Logo Git" width="80" height="80">
                 </a>
             </div>
 
@@ -28,9 +28,9 @@
                 {/if}                    
             </ul>
 
-            <div class="col-md-3 text-end">
+            <div class="col-md-3 text-left">
                 {if $usuario_logueado != null}
-                    <span class="name-logo">{$usuario_logueado} </span> <a class="btn btn-outline-primary" href="logout" role="button">Log Out</a>
+                    <span class="text-uppercase">{$usuario_logueado} </span> <a class="btn btn-outline-primary" href="logout" role="button">Log Out</a>
                 {else}
                     <a class="btn btn-outline-primary" href="login" role="button">Log in</a>
                 {/if}
