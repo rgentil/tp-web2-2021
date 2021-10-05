@@ -11,13 +11,13 @@ class ControlLoginHelper{
     }
 
     function checkLoggedIn(){
-        if(!isset($_SESSION)){ 
+        /*if(!isset($_SESSION)){ 
             session_start(); 
         } 
         if(!isset($_SESSION["codigo"])){
             //$this->view->showLogin();
             header("Location: ".BASE_URL."login");
-        }
+        }*/
     }
 
     function checkRolLoggedIn(){

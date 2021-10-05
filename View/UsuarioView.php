@@ -32,7 +32,7 @@ class UsuarioView{
         $this->smarty->assign('titulo_listado','Listado de Usuarios');
         $this->smarty->assign('titulo_crear','Crear Usuario');
         $this->smarty->assign('usuarios',$usuarios);
-        $this->smarty->display('templates/usuario/usuarioList.tpl');
+        $this->smarty->display('templates/usuarioList.tpl');
     }
 
     function showUsuario($usuarios){
@@ -40,14 +40,14 @@ class UsuarioView{
         $titulo = 'Usuario ' . $usuarios->nombre;
         $this->smarty->assign('titulo_header',$titulo);
         $this->smarty->assign('usuario',$usuarios);
-        $this->smarty->display('templates/usuario/usuarioDetail.tpl');
+        $this->smarty->display('templates/usuarioDetail.tpl');
     }
 
     function showUsuarioAlta(){
         $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Crear Usuario');
         $this->smarty->assign('titulo_crear','Crear Usuario');
-        $this->smarty->display('templates/usuario/usuarioAlta.tpl');
+        $this->smarty->display('templates/usuarioAlta.tpl');
     }
 
     function showUsuarioUpdate($usuario){
@@ -57,11 +57,12 @@ class UsuarioView{
             $this->smarty->assign('titulo_header',$titulo);
             $this->smarty->assign('titulo_crear',$titulo);
             $this->smarty->assign('usuario',$usuario);
-            $this->smarty->display('templates/usuario/usuarioUpdate.tpl');
+            $this->smarty->display('templates/usuarioUpdate.tpl');
         }
     }
 
     function showRegistro($mensaje = ""){
+        $this->smarty->assign('admin',false);
         $this->smarty->assign('usuario_logueado',null);
         $this->smarty->assign('titulo_header','Nuevo Registro');
         $this->smarty->assign('titulo_crear','Nuevo Registro');
@@ -70,6 +71,7 @@ class UsuarioView{
     }
 
     function showLogin(){
+        $this->smarty->assign('admin',false);
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->assign('usuario_logueado',null);
         $this->smarty->assign('titulo_login','Bienvenido, ingrese por favor con código y password de usuario');

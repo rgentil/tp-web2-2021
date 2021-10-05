@@ -26,6 +26,7 @@ class LoginView{
     }
 
     function showLogin($mensaje = ""){
+        $this->smarty->assign('admin',false);
         $this->smarty->assign('usuario_logueado',null);
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->assign('titulo_login','Ingrese código y password de usuario para iniciar sesión');

@@ -31,7 +31,7 @@ class AvionView{
         $this->smarty->assign('titulo_listado','Listado de Aviones');
         $this->smarty->assign('titulo_crear','Crear Hangar');
         $this->smarty->assign('aviones',$aviones);
-        $this->smarty->display('templates/avion/avionList.tpl');
+        $this->smarty->display('templates/avionList.tpl');
     }
 
     function showAvion($avion){
@@ -39,7 +39,7 @@ class AvionView{
         $titulo = 'Avión ' . $avion->nombre;
         $this->smarty->assign('titulo_header',$titulo);
         $this->smarty->assign('avion',$avion);
-        $this->smarty->display('templates/avion/avionDetail.tpl');
+        $this->smarty->display('templates/avionDetail.tpl');
     }
 
     function showAvionAlta($hangaresDisponibles){
@@ -47,7 +47,7 @@ class AvionView{
         $this->smarty->assign('hangaresDisponibles',$hangaresDisponibles);
         $this->smarty->assign('titulo_header','Crear Avión');
         $this->smarty->assign('titulo_crear','Crear Avión');
-        $this->smarty->display('templates/avion/avionAlta.tpl');
+        $this->smarty->display('templates/avionAlta.tpl');
     }
 
     function showAvionUpdate($avion,$hangaresDisponibles){
@@ -58,7 +58,7 @@ class AvionView{
             $this->smarty->assign('titulo_header',$titulo);
             $this->smarty->assign('titulo_crear',$titulo);
             $this->smarty->assign('avion',$avion);
-            $this->smarty->display('templates/avion/avionUpdate.tpl');
+            $this->smarty->display('templates/avionUpdate.tpl');
         }        
     }
 }

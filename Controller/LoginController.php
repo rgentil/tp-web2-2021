@@ -18,7 +18,8 @@ class LoginController {
             session_start(); 
         } 
         session_destroy();
-        $this->view->showLogin();
+        //$this->view->showLogin();
+        header("Location: ".BASE_URL."home");
     }
 
     public function showLogin(){
