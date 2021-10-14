@@ -29,6 +29,11 @@ En adelante, se usará ítems y categoría para describir los requerimientos fun
 * Base de datos phpmyadmin
 * Visual Studio Code
 
+## Detalles Usuario para Log in ⚙️
+
+* Administrador admin123
+* juanca comun 123
+
 ## Autor ✒️
 
 * **Ricardo Gentil**
