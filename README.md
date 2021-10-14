@@ -1,4 +1,4 @@
-# Trabajo Especial Web 2 - 2021
+# Trabajo Práctico Especial Web 2 - 2021
 
 ## Comisión H - Número 81
 
