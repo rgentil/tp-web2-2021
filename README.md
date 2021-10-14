@@ -23,7 +23,7 @@ En adelante, se usará ítems y categoría para describir los requerimientos fun
 
 * usuario(id_usuario,nombre,codigo,password,rol)
 
-### Caracteristicas 📋
+### Características 📋
 * XAMPP
 * Servidor Apache
 * Base de datos phpmyadmin
