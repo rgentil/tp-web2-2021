@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 02-10-2021 a las 14:38:49
+-- Tiempo de generación: 14-10-2021 a las 14:32:13
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -51,7 +51,8 @@ INSERT INTO `avion` (`id_avion`, `nombre`, `fabricante`, `tipo`, `id_hangar`) VA
 (9, 'Mirage III', 'Dassault Aviation', 'Interceptor', 4),
 (10, 'Mirage IV', 'Dassault Aviation', 'Bombardero estratégico', 4),
 (11, 'AH-64 Apache', 'Hughes Helicopters/McDonnell Douglas/Boeing', 'Helicóptero de ataque', 6),
-(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7);
+(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7),
+(21, 'Avion 1', 'Fabricante 1', 'Tipo Avion 1', 12);
 
 -- --------------------------------------------------------
 
@@ -78,7 +79,7 @@ INSERT INTO `hangar` (`id_hangar`, `nombre`, `ubicacion`, `capacidad`) VALUES
 (5, 'Hangar 5', 'Norte 1-3', 2),
 (6, 'Hangar 6', 'Centro 1-2', 3),
 (7, 'Hangar 7', 'Sur 1-3', 2),
-(11, 'hangar para hacer cosas', 'por ahi dando vueltas', 12);
+(12, 'La patria', 'Sud oeste 1-4', 4);
 
 -- --------------------------------------------------------
 
@@ -99,11 +100,10 @@ CREATE TABLE `usuario` (
 --
 
 INSERT INTO `usuario` (`id_usuario`, `nombre`, `codigo`, `password`, `rol`) VALUES
-(4, 'Ricardo', 'admin', '$2y$10$SrR.vnHy/Dc14obSWNEiyeovf5eKS78DwJsqDpG2sPMpy9zXZAkCO', 'Admin'),
-(7, 'Hernesto', 'hernesto', '$2y$10$ofGgZkTTSEuNnzIWlYCBse8IcF4xfffinGG0sfmVC9iExhFIyNYB6', 'Admin'),
-(8, 'comun', 'comun', '$2y$10$WtDyyLtMAdNeRbcgCtM9l.ApxTCAGi6R2d9o4w8du8kvvqLMn1Fsa', 'Comun'),
-(9, 'El loco abreu', 'crack', '$2y$10$ZpJdlPqvblLndhPDpdcTTeaQzRyCsQ3XVXoM2iFXWa6.YZEumxiiC', 'Admin'),
-(10, 'Testeador de testeo', 'tester', '$2y$10$QBYzedE5qTXGdQvKQfspeuvrHJMgpsHGGUsqdKx3vOPUfE0Ag3Q2G', 'Comun');
+(4, 'Administrador', 'admin', '$2y$10$SrR.vnHy/Dc14obSWNEiyeovf5eKS78DwJsqDpG2sPMpy9zXZAkCO', 'Admin'),
+(11, 'Ricardo', 'Administrador', '$2y$10$k38tIAbSTR..JkH88iVSw.bFuy2MXOrONYfKn6lqMjJGAvTeavlv.', 'Admin'),
+(12, 'Juan Carlos ', 'juanca', '$2y$10$e10uFEVDCCH2cvEZH.EC7uLCyilzh9IbGjAFIwclkILskhpxRuBpq', 'Comun'),
+(13, 'Comun', 'comun', '$2y$10$pFxTjCF.FjxRTm9IZv0nC.LBpJRWS9do7/Hk73pD5nDFx1KWu8Iri', 'Comun');
 
 --
 -- Índices para tablas volcadas
@@ -135,19 +135,19 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `avion`
 --
 ALTER TABLE `avion`
-  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT de la tabla `hangar`
 --
 ALTER TABLE `hangar`
-  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
