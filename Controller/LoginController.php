@@ -19,6 +19,7 @@ class LoginController {
         } 
         session_destroy();
         //$this->view->showLogin();
+        //Cuando se oblitario loguear va a login
         header("Location: ".BASE_URL."home");
     }
 

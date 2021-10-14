@@ -8,6 +8,7 @@ class HangarModel{
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tp_web2_2021;charset=utf8', 'root', '');
     }
 
+    //Se agrupo por hanagar para contar la cantidad de aviones de que tiene
     function getAll(){
         $sentencia = $this->db->prepare('SELECT h.id_hangar, h.nombre, h.ubicacion, h.capacidad, a.id_avion, COUNT(a.id_avion) AS cantAviones
                                          FROM hangar h LEFT JOIN avion a ON (a.id_hangar = h.id_hangar)

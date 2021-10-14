@@ -10,7 +10,11 @@ class ControlLoginHelper{
         //$this->view = new LoginView();
     }
 
+    // Métodos para controlar el acceso a las páginas o realizar acciones. 
+
+    //Controla que se halla logueado
     function checkLoggedIn(){
+        //Lo comento para esta entrega, porque se puede navegar la aplicacion sin tener que estar logueado.
         /*if(!isset($_SESSION)){ 
             session_start(); 
         } 
@@ -20,6 +24,7 @@ class ControlLoginHelper{
         }*/
     }
 
+    //Controla que el usuario logueado tengo rol de administrador
     function checkRolLoggedIn(){
         if(!isset($_SESSION)){ 
             session_start(); 

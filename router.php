@@ -12,8 +12,8 @@ define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] 
 if (!empty($_GET['accion'])) {
     $action = $_GET['accion'];
 } else {
-    //$action = 'login'; // acción por defecto si no envían
-    $action = 'home';
+    //$action = 'login'; //Cuando sea obligatorio estar logueado para recorrer la app.
+    $action = 'home'; // acción por defecto si no envían
 }
 
 $params = explode('/', $action);
