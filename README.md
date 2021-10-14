@@ -32,7 +32,7 @@ En adelante, se usará ítems y categoría para describir los requerimientos fun
 ## Prueba - Usuarios Log in ⚙️
 
 * Administrador admin123
-* juanca comun 123
+* juanca comun123
 
 ## Autor ✒️
 
