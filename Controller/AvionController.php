@@ -31,7 +31,7 @@ class AvionController {
     public function showByIdHangar($id_hangar){
         $this->controlLoginHelper->checkLoggedIn();
         $aviones = $this->model->getByIdHangar($id_hangar);
-        $this->view->showAll($aviones);
+        $this->view->showAllByHangar($aviones);
     }
 
     public function showAlta(){

@@ -27,9 +27,20 @@ class AvionView{
 
     function showAll($aviones){
         $this->usuarioLogueado();
-        $this->smarty->assign('titulo_header','Listado de Aviones');
-        $this->smarty->assign('titulo_listado','Listado de Aviones');
-        $this->smarty->assign('titulo_crear','Crear Hangar');
+        $titulo = 'Listado de Aviones';
+        $this->smarty->assign('titulo_header', $titulo);
+        $this->smarty->assign('titulo_listado',$titulo);
+        $this->smarty->assign('titulo_crear','Crear Avión');
+        $this->smarty->assign('aviones',$aviones);
+        $this->smarty->display('templates/avionList.tpl');
+    }
+
+    function showAllByHangar($aviones){
+        $this->usuarioLogueado();
+        $titulo = 'Listado de Aviones en el Hangar ' . $aviones[0]->h_nombre;
+        $this->smarty->assign('titulo_header', $titulo);
+        $this->smarty->assign('titulo_listado',$titulo);
+        $this->smarty->assign('titulo_crear','Crear Avión');
         $this->smarty->assign('aviones',$aviones);
         $this->smarty->display('templates/avionList.tpl');
     }

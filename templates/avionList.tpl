@@ -15,7 +15,7 @@
             <ul class="list-group">
                 {foreach from=$aviones item=$avion}
                     <li class="list-group-item list-group-item-secondary">
-                        <a href="avion/{$avion->id_avion}">{$avion->nombre}</a> | {$avion->fabricante}
+                        <a href="avion/{$avion->id_avion}">{$avion->nombre}</a> | {$avion->fabricante} | HANGAR {$avion->h_nombre}
                         {if $admin}
                             - 
                             <a class="btn btn-outline-danger" href="deleteAvion/{$avion->id_avion}">Borrar</a>
