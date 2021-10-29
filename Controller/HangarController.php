@@ -44,16 +44,32 @@ class HangarController {
     function createHangar(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $id = $this->model->insert($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad']);
-        $this->showById($id);
+        $mensaje_valores_requeridos = "Se debe ingresar nombre, ubicación y capacidad";
+        if (!isset($_POST['nombre']) || !isset($_POST['ubicacion']) || !isset($_POST['capacidad']) ){
+            $this->view->showHangarAlta($mensaje_valores_requeridos);    
+        }else{
+            $id = $this->model->insert($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad']);
+            $this->showById($id);
+        }
     }
 
     function updateHangar(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $id = $_POST['id'];
-        $this->model->update($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad'],$id);
-        $this->showById($id);
+        if (!isset($_POST['id'])){
+            $this->showAll();
+        }
+        else{
+            $id = $_POST['id'];
+            $mensaje_valores_requeridos = "Se debe ingresar nombre, ubicación y capacidad";
+            if (!isset($_POST['nombre']) || !isset($_POST['ubicacion']) || !isset($_POST['capacidad']) ){
+                $hangar = $this->model->getById($id);
+                $this->view->showHangarUpdate($hangar, $mensaje_valores_requeridos);    
+            }else{
+                $this->model->update($_POST['nombre'], $_POST['ubicacion'], $_POST['capacidad'],$id);
+                $this->showById($id);
+            }
+        }
     }
 
     function deleteHangar($id){

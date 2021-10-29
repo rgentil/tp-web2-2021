@@ -5,7 +5,11 @@
     <div class="row mt-4">
         <h1>{$titulo_update}</h1>
         <form action="updateHangar" method="post">
-                
+            {if $mensaje_valores_requeridos != null}
+                <div class="alert alert-danger" role="alert">
+                    {$mensaje_valores_requeridos}
+                </div>
+            {/if}  
             <input type="hidden" class="form-control" id="id" name="id" value={$hangar->id_hangar} required>
             
             <div class="row mb-3">
