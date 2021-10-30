@@ -49,7 +49,7 @@ class UsuarioController {
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
         $passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $id = $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol']);
+        $id = $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol'],$_POST['email']);
         $this->showById($id);
     }
 
@@ -58,7 +58,7 @@ class UsuarioController {
         $this->controlLoginHelper->checkRolLoggedIn();
         $id = $_POST['id'];
         //$passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $this->model->update($_POST['nombre']/*, $_POST['codigo'], $passHasheado, $_POST['rol']*/, $id);
+        $this->model->update($_POST['nombre']/*, $_POST['codigo'], $passHasheado,*/, $_POST['rol'], $id);
         $this->showById($id);
     }
 
@@ -75,13 +75,30 @@ class UsuarioController {
     }  
 
     function registrarUsuario(){
-        $id = $this->model->getUsuario($_POST['codigo']);
-        if ($id != null){
-            $this->view->showRegistro("El código de usuario ya existe.");
-        }else{
-            $passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
-            $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol']);
-            $this->view->showLogin();
+
+        if (!isset($_POST['nombre']) || !isset($_POST['codigo']) || !isset($_POST['rol']) || !isset($_POST['password'])){
+            $this->view->showRegistro("Ingrese los valores requeridos.");
+        }
+        else{
+            $nombre = $_POST['nombre'];
+            $codigo = $_POST['codigo'];
+            $rol = $_POST['rol'];
+            $password = $_POST['password'];
+            $email = $_POST['email'];
+            $id = $this->model->getUsuario($codigo);
+            if ($id != null){
+                $this->view->showRegistro("El código de usuario ya existe.");
+            }else{
+                $passHasheado = password_hash($password, PASSWORD_BCRYPT);
+                $this->model->insert($nombre, $codigo, $passHasheado, $rol, $email);
+                //Una vez registrado queda logueado el nuevo usuario.
+                $_SESSION["codigo"] = $codigo;
+                $_SESSION["nombre"] = $nombre;
+                $_SESSION["rol"] = $rol;
+                $this->view->showHome();
+            }
         }
     }
+
+
 }

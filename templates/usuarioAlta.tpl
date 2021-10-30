@@ -19,6 +19,13 @@
                     <input type="text" class="form-control" id="idCodigo" name="codigo" required>
                 </div>
             </div>
+
+            <div class="row mb-3">
+                <label for="idEmail" class="col-sm-2 col-form-label">Email</label>
+                <div class="col-sm-10">
+                    <input type="email" class="form-control" id="idEmail" name="email">
+                </div>
+            </div>
             
             <div class="row mb-3">
                 <label for="idPassword" class="col-sm-2 col-form-label">Password</label>
@@ -31,9 +38,13 @@
                 <label class="col-sm-2 col-form-label" for="idListRoles">Rol</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="idListRoles" name="rol" required>
-                        <option selected>Seleccione un rol...</option>
-                        <option value='Admin'>Administrador</option>
-                        <option value='Comun'>Común</option>
+                        {if !$admin} 
+                            <option selected value='Comun'>Común</option>
+                        {else}
+                            <option selected>Seleccione un rol...</option>
+                            <option value='Admin'>Administrador</option>
+                            <option value='Comun'>Común</option>
+                        {/if}                        
                     </select>
                 </div>
             </div>  

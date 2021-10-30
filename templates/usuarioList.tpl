@@ -14,13 +14,13 @@
             <ul class="list-group">
                 {foreach from=$usuarios item=$usuario}
                     <li class="list-group-item list-group-item-secondary">
-                        <a href="usuario/{$usuario->id_usuario}">{$usuario->nombre}</a> - Rol {$usuario->rol}
+                        <a href="usuario/{$usuario->id_usuario}">{$usuario->nombre}</a> - Rol {$usuario->rol} Email {$usuario->email}
                         {if $usuario_codigo != $usuario->codigo}
                             - 
                             <a class="btn btn-outline-danger" href="deleteUsuario/{$usuario->id_usuario}">Borrar</a> 
-                        {/if}
                             - 
                             <a class="btn btn-outline-success" href="usuarioUpdate/{$usuario->id_usuario}">Actualizar</a>
+                        {/if}
                     </li>
                 {/foreach}
             </ul>

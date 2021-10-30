@@ -9,7 +9,7 @@ class UsuarioModel{
     }
 
     function getAll(){
-        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol, 
+        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol, email,
                                                 CASE
                                                     WHEN rol = "Admin" THEN "Administrador"
                                                     WHEN rol = "Comun" THEN "Común"
@@ -22,7 +22,7 @@ class UsuarioModel{
     } 
 
     function getById($id){
-        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol,
+        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol, email,
                                                 CASE
                                                     WHEN rol = "Admin" THEN "Administrador"
                                                     WHEN rol = "Comun" THEN "Común"
@@ -34,9 +34,9 @@ class UsuarioModel{
         return $usuario;
     }
 
-    function insert($nombre, $codigo, $password, $rol){
-        $sentencia = $this->db->prepare('INSERT INTO usuario(nombre, codigo, password, rol) VALUES(?, ?, ?, ?)');
-        $sentencia->execute(array($nombre, $codigo, $password, $rol));
+    function insert($nombre, $codigo, $password, $rol, $email){
+        $sentencia = $this->db->prepare('INSERT INTO usuario(nombre, codigo, password, rol, email) VALUES(?, ?, ?, ?, ?)');
+        $sentencia->execute(array($nombre, $codigo, $password, $rol,$email));
         return $this->db->lastInsertId();
     }
 
@@ -45,13 +45,13 @@ class UsuarioModel{
         $sentencia->execute(array($id));
     }
 
-    function update($nombre,$id){
-        $sentencia = $this->db->prepare("UPDATE usuario SET nombre=? WHERE id_usuario=?");
-        $sentencia->execute(array($nombre, $id));
+    function update($nombre,$rol,$id){
+        $sentencia = $this->db->prepare("UPDATE usuario SET nombre=?,rol=? WHERE id_usuario=?");
+        $sentencia->execute(array($nombre, $rol, $id));
     }
 
     function getUsuario($codigo){
-        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol,
+        $sentencia = $this->db->prepare('SELECT id_usuario, nombre, codigo, password, rol, email,
                                                 CASE
                                                     WHEN rol = "Admin" THEN "Administrador"
                                                     WHEN rol = "Comun" THEN "Común"

@@ -23,11 +23,34 @@
             </div>
 
             <div class="row mb-3">
-                <label for="idCodigo" class="col-sm-2 col-form-label">Rol</label>
+                <label for="idEmail" class="col-sm-2 col-form-label">Email</label>
                 <div class="col-sm-10">
-                    <input type="text" class="form-control" id="idCodigo" name="codigo" value="{$usuario->rol_descrip}" required readonly>
+                    <input type=" email" class="form-control" id="idEmail" name="email" value="{$usuario->email}" readonly>
                 </div>
             </div>
+            <!-- Ahora se puede editar el rol de un usuario.
+            <div class="row mb-3">
+                <label for="idCodigo" class="col-sm-2 col-form-label">Rol</label>
+                <div class="col-sm-10">
+                    <input type="text" class="form-control" id="idCodigo" name="codigo" value="{$usuario->rol_descrip}" required>
+                </div>
+            </div>
+            -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label" for="idListRoles">Rol</label>
+                <div class="col-sm-10">
+                    <select class="form-select" id="idListRoles" name="rol" required>
+                        <option selected>Seleccione un rol...</option>
+                        {if $usuario->rol == 'Admin'} 
+                            <option selected value='Admin'>Administrador</option>
+                            <option value='Comun'>Común</option>
+                        {else}
+                            <option value='Admin'>Administrador</option>
+                            <option selected value='Comun'>Común</option>
+                        {/if}                        
+                    </select>
+                </div>
+            </div> 
             
             <button type="submit" class="btn btn-outline-primary"> Guardar</button>
         
