@@ -21,6 +21,7 @@ class LoginController {
         //$this->view->showLogin();
         //Cuando se oblitario loguear va a login
         header("Location: ".BASE_URL."home");
+        die();
     }
 
     public function showLogin(){

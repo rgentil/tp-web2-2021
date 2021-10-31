@@ -37,8 +37,19 @@ class HangarModel{
     }
 
     function update($nombre,$ubicacion,$capacidad,$id){
-        $sentencia = $this->db->prepare("UPDATE hangar SET nombre=?, ubicacion=?, capacidad=? WHERE id_hangar=?");
+        $sentencia = $this->db->prepare('UPDATE hangar SET nombre=?, ubicacion=?, capacidad=? WHERE id_hangar=?');
         $sentencia->execute(array($nombre,$ubicacion,$capacidad,$id));
+    }
+
+    function disponible($id){
+        $sentencia = $this->db->prepare('SELECT COUNT(id_hangar) as tieneEspacio FROM hangar WHERE id_hangar = ? 
+                                         AND capacidad > 
+                                         (SELECT COUNT(a.id_avion) AS cantAviones 
+                                            FROM hangar h LEFT JOIN avion a ON (a.id_hangar = h.id_hangar) 
+                                            WHERE h.id_hangar = ? GROUP BY h.id_hangar)');
+        $sentencia->execute(array($id,$id));
+        $total = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $total;
     }
 
 }

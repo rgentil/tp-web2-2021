@@ -56,8 +56,6 @@ class AvionModel {
             );
             $sentencia->execute();
         }
-        
-        
         $hangares = $sentencia->fetchAll(PDO::FETCH_OBJ);
         return $hangares;
     } 

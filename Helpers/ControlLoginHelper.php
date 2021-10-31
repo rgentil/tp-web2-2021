@@ -20,6 +20,7 @@ class ControlLoginHelper{
         if(!isset($_SESSION["rol"]) || $_SESSION["rol"] != "Admin"){
             //$this->view->showLogin();
             header("Location: ".BASE_URL."login");
+            die();
         }
     }
 
@@ -76,6 +77,7 @@ class ControlLoginHelper{
         if(!isset($_SESSION["codigo"])){
             //$this->view->showLogin();
             header("Location: ".BASE_URL."login");
+            die();
         }*/
     }
 
