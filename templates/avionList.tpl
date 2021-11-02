@@ -35,9 +35,14 @@
             <a class="btn btn-outline-secondary" href="home">Aeródromo</a>
         </div>
     </div>
+
+    
+    <div id="id-div-aviones"class="col-md-8">
+        {include file='templates/vue/avionList.tpl'}
+    </div>
+    
     
 </div>
 
-
-
+<script text="text/javascript" src="js/ApiAvion.js"></script>
 {include file='templates/footer.tpl'}

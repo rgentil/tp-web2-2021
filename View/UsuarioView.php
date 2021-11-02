@@ -27,19 +27,21 @@ class UsuarioView extends View{
         $this->smarty->display('templates/usuarioDetail.tpl');
     }
 
-    function showUsuarioAlta(){
+    function showUsuarioAlta($mensaje = null){
         $this->usuarioLogueado();
         $this->smarty->assign('titulo_header','Crear Usuario');
         $this->smarty->assign('titulo_crear','Crear Usuario');
+        $this->smarty->assign('mensaje_valores_requeridos', $mensaje);
         $this->smarty->display('templates/usuarioAlta.tpl');
     }
 
-    function showUsuarioUpdate($usuario){
+    function showUsuarioUpdate($usuario,$mensaje = null){
         $this->usuarioLogueado();
         if ($usuario != null && !empty($usuario)){
             $titulo = 'Usuario ' . $usuario->nombre;
             $this->smarty->assign('titulo_header',$titulo);
-            $this->smarty->assign('titulo_crear',$titulo);
+            $this->smarty->assign('titulo_update',$titulo);
+            $this->smarty->assign('mensaje_valores_requeridos', $mensaje);
             $this->smarty->assign('usuario',$usuario);
             $this->smarty->display('templates/usuarioUpdate.tpl');
         }

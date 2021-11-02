@@ -41,7 +41,6 @@
                         {if !$admin} 
                             <option selected value='Comun'>Común</option>
                         {else}
-                            <option selected>Seleccione un rol...</option>
                             <option value='Admin'>Administrador</option>
                             <option value='Comun'>Común</option>
                         {/if}                        

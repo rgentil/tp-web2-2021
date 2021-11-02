@@ -48,18 +48,35 @@ class UsuarioController {
     function createUsuario(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $id = $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol'],$_POST['email']);
-        $this->showById($id);
+        $mensaje_valores_requeridos = "Se debe ingresar nombre, password, código, rol";
+        if (!isset($_POST['nombre']) || !isset($_POST['password']) || !isset($_POST['codigo']) || !isset($_POST['rol'])){
+            $this->view->showUsuarioAlta($mensaje_valores_requeridos);    
+        }
+        else{
+            $passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
+            $id = $this->model->insert($_POST['nombre'], $_POST['codigo'], $passHasheado, $_POST['rol'],$_POST['email']);
+            $this->showById($id);
+        }        
     }
 
     function updateUsuario(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $id = $_POST['id'];
-        //$passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
-        $this->model->update($_POST['nombre']/*, $_POST['codigo'], $passHasheado,*/, $_POST['rol'], $id);
-        $this->showById($id);
+        if (!isset($_POST['id'])){
+            $this->showAll();
+        }
+        else{
+            $id = $_POST['id'];
+            $mensaje_valores_requeridos = "Se debe ingresar nombre, rol";
+            if (!isset($_POST['nombre']) || !isset($_POST['rol'])){
+                $usuario = $this->model->getById($id);
+                $this->view->showUsuarioUpdate($usuario, $mensaje_valores_requeridos);    
+            }else{
+                //$passHasheado = password_hash($_POST['password'], PASSWORD_BCRYPT);
+                $this->model->update($_POST['nombre']/*, $_POST['codigo'], $passHasheado,*/, $_POST['rol'],$_POST['email'], $id);
+                $this->showById($id);
+            }
+        }        
     }
 
     function deleteUsuario($id){
@@ -90,11 +107,16 @@ class UsuarioController {
                 $this->view->showRegistro("El código de usuario ya existe.");
             }else{
                 $passHasheado = password_hash($password, PASSWORD_BCRYPT);
-                $this->model->insert($nombre, $codigo, $passHasheado, $rol, $email);
+                $id_usuario = $this->model->insert($nombre, $codigo, $passHasheado, $rol, $email);
                 //Una vez registrado queda logueado el nuevo usuario.
+                if(!isset($_SESSION)){ 
+                    session_start(); 
+                } 
+                $_SESSION["id"] = $id_usuario;
                 $_SESSION["codigo"] = $codigo;
                 $_SESSION["nombre"] = $nombre;
                 $_SESSION["rol"] = $rol;
+                $_SESSION["email"] = $email;
                 $this->view->showHome();
             }
         }

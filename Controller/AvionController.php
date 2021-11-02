@@ -52,16 +52,33 @@ class AvionController {
     function createAvion(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
-        $this->showById($id);
+        $mensaje_valores_requeridos = "Se debe ingresar nombre, fabricante, tipo y hangar";
+        if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
+            $this->view->showAvionAlta($mensaje_valores_requeridos);            
+        }else{
+            $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
+            $this->showById($id);
+        }
     }
 
     function updateAvion(){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $id = $_POST['id'];
-        $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
-        $this->showById($id);
+        if (!isset($_POST['id'])){
+            $this->showAll();
+        }
+        else{
+            $id = $_POST['id'];  
+            $mensaje_valores_requeridos = "Se debe ingresar nombre, fabricante, tipo y hangar";
+            if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
+                $avion = $this->model->getById($id);
+                $hangaresDisponibles = $this->model->getHangaresDisponibles($id);
+                $this->view->showAvionUpdate($avion,$hangaresDisponibles,$mensaje_valores_requeridos);
+            }else{
+                $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
+                $this->showById($id);
+            }    
+        }        
     }
 
     function deleteAvion($id){

@@ -6,7 +6,7 @@
             <div class="col">
                 <h2>Nombre : {$usuario->nombre}</h2>
                 <h2>Código: {$usuario->codigo}</h2>
-                <h2>Rol: {$usuario->rol}</h2>
+                <h2>Rol: {$usuario->rol_descrip}</h2>
             </div>
         </div>
 

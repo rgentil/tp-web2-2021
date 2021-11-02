@@ -3,9 +3,13 @@
 <div class="container">
 
     <div class="row mt-4">
-        <h1>{$titulo_crear}</h1>
+        <h1>{$titulo_update}</h1>
         <form action="updateUsuario" method="post">
-            
+            {if $mensaje_valores_requeridos != null}
+                <div class="alert alert-danger" role="alert">
+                    {$mensaje_valores_requeridos}
+                </div>
+            {/if}  
             <input type="hidden" class="form-control" id="id" name="id" value={$usuario->id_usuario} required>
 
             <div class="row mb-3">
@@ -40,7 +44,6 @@
                 <label class="col-sm-2 col-form-label" for="idListRoles">Rol</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="idListRoles" name="rol" required>
-                        <option selected>Seleccione un rol...</option>
                         {if $usuario->rol == 'Admin'} 
                             <option selected value='Admin'>Administrador</option>
                             <option value='Comun'>Común</option>

@@ -19,7 +19,7 @@ class LoginController {
         } 
         session_destroy();
         //$this->view->showLogin();
-        //Cuando se oblitario loguear va a login
+        //Cuando sea oblitario loguear va a login
         header("Location: ".BASE_URL."home");
         die();
     }
@@ -43,9 +43,11 @@ class LoginController {
                 if(!isset($_SESSION)){ 
                     session_start(); 
                 } 
+                $_SESSION["id"] = $usuario->id_usuario;
                 $_SESSION["codigo"] = $usuario->codigo;
                 $_SESSION["nombre"] = $usuario->nombre;
                 $_SESSION["rol"] = $usuario->rol;
+                $_SESSION["email"] = $usuario->email;
                 $this->view->showHome();
             }else{
                 $this->view->showLogin('Credenciales erroneas');

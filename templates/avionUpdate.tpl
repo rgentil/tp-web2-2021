@@ -3,9 +3,13 @@
 <div class="container">
 
     <div class="row mt-4">
-        <h1>{$titulo_crear}</h1>
+        <h1>{$titulo_update}</h1>
         <form action="updateAvion" method="post">
-            
+            {if $mensaje_valores_requeridos != null}
+                <div class="alert alert-danger" role="alert">
+                    {$mensaje_valores_requeridos}
+                </div>
+            {/if}  
             <input type="hidden" class="form-control" id="id" name="id" value={$avion->id_avion} required>
 
             <div class="row mb-3">
@@ -33,7 +37,6 @@
                 <label class="col-sm-2 col-form-label" for="idListHangares">Hangar Disponible</label>
                 <div class="col-sm-10">
                     <select class="form-select" id="idListHangares" name="idHangar" required>
-                        <option selected>Seleccione hangar...</option>
                         {foreach from=$hangaresDisponibles item=$hangar}
                             {if $hangar->hIdHangar == $avion->id_hangar}
                                 <option selected value={$hangar->hIdHangar}>{$hangar->hNombre} </option>

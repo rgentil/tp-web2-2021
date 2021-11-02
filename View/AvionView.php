@@ -38,22 +38,24 @@ class AvionView extends View{
         $this->smarty->display('templates/avionDetail.tpl');
     }
 
-    function showAvionAlta($hangaresDisponibles){
+    function showAvionAlta($hangaresDisponibles,$mensaje = null){
         $this->usuarioLogueado();
         $this->smarty->assign('hangaresDisponibles',$hangaresDisponibles);
         $this->smarty->assign('titulo_header','Crear Avión');
         $this->smarty->assign('titulo_crear','Crear Avión');
+        $this->smarty->assign('mensaje_valores_requeridos', $mensaje);
         $this->smarty->display('templates/avionAlta.tpl');
     }
 
-    function showAvionUpdate($avion,$hangaresDisponibles){
+    function showAvionUpdate($avion,$hangaresDisponibles,$mensaje = null){
         $this->usuarioLogueado();
         $this->smarty->assign('hangaresDisponibles',$hangaresDisponibles);
         if ($avion != null && !empty($avion)){
             $titulo = 'Avión ' . $avion->nombre;
             $this->smarty->assign('titulo_header',$titulo);
-            $this->smarty->assign('titulo_crear',$titulo);
+            $this->smarty->assign('titulo_update',$titulo);
             $this->smarty->assign('avion',$avion);
+            $this->smarty->assign('mensaje_valores_requeridos', $mensaje);
             $this->smarty->display('templates/avionUpdate.tpl');
         }        
     }

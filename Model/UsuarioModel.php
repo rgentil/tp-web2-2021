@@ -2,7 +2,7 @@
 
 class UsuarioModel{
 
-    public $db;
+    private $db;
 
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tp_web2_2021;charset=utf8', 'root', '');
@@ -45,9 +45,9 @@ class UsuarioModel{
         $sentencia->execute(array($id));
     }
 
-    function update($nombre,$rol,$id){
-        $sentencia = $this->db->prepare("UPDATE usuario SET nombre=?,rol=? WHERE id_usuario=?");
-        $sentencia->execute(array($nombre, $rol, $id));
+    function update($nombre,$rol,$email,$id){
+        $sentencia = $this->db->prepare('UPDATE usuario SET nombre=?,rol=?,email=? WHERE id_usuario=?');
+        $sentencia->execute(array($nombre, $rol, $email, $id));
     }
 
     function getUsuario($codigo){

@@ -1,15 +1,13 @@
 <?php
 
-require_once "Controller-api/ApiController.php";
 require_once "Model/AvionModel.php";
 require_once "Model/HangarModel.php";
 require_once "View/ApiView.php";
-
+require_once "Controller-api/ApiController.php";
 
 class ApiAvionController extends ApiController {
 
     private $model;
-    private $modelHangar;
     private $view;
 
     public function __construct(){

@@ -5,7 +5,11 @@
     <div class="row mt-4">
         <h1>{$titulo_crear}</h1>
         <form action="createUsuario" method="post">
-            
+            {if $mensaje_valores_requeridos != null}
+                <div class="alert alert-danger" role="alert">
+                    {$mensaje_valores_requeridos}
+                </div>
+            {/if}  
             <div class="row mb-3">
                 <label for="idNombre" class="col-sm-2 col-form-label">Nombre</label>
                 <div class="col-sm-10">
@@ -41,9 +45,8 @@
                         {if !$admin} 
                             <option selected value='Comun'>Común</option>
                         {else}
-                            <option selected>Seleccione un rol...</option>
                             <option value='Admin'>Administrador</option>
-                            <option value='Comun'>Común</option>
+                            <option selected value='Comun'>Común</option>
                         {/if}                        
                     </select>
                 </div>

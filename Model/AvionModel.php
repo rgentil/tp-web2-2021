@@ -2,7 +2,7 @@
 
 class AvionModel {
 
-    public $db;
+    private $db;
 
     public function __construct(){
         $this->db = new PDO('mysql:host=localhost;'.'dbname=db_tp_web2_2021;charset=utf8', 'root', '');
