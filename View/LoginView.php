@@ -13,6 +13,7 @@ class LoginView extends View{
     function showLogin($mensaje = ""){
         $this->smarty->assign('admin',false);
         $this->smarty->assign('usuario_logueado',null);
+        $this->smarty->assign('usuario_id',null);
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->assign('titulo_login','Ingrese código y password de usuario para iniciar sesión');
         $this->smarty->assign('mensaje',$mensaje);

@@ -12,7 +12,7 @@ class ControlLoginHelper{
 
     // Métodos para controlar el acceso a las páginas o realizar acciones. 
 
-    //Controla que el usuario logueado tengo rol de administrador
+    //Controla que el usuario logueado tenga rol de administrador
     function checkRolLoggedIn(){
         if(!isset($_SESSION)){ 
             session_start(); 
@@ -54,6 +54,16 @@ class ControlLoginHelper{
         return null;
     }
 
+    function getIdUsuarioLogueado(){
+        if(!isset($_SESSION)){ 
+            session_start(); 
+        } 
+        if (isset($_SESSION["id"]) && !empty($_SESSION["id"])){
+            return $_SESSION["id"];
+        }
+        return null;
+    }
+
     function esUsuarioAdmin(){
         if(!isset($_SESSION)){ 
             session_start(); 
@@ -68,9 +78,10 @@ class ControlLoginHelper{
         }
     }
 
-    //Controla que se halla logueado
+    //Controla que se este logueado para recorrer la aplicación
     function checkLoggedIn(){
-        //Lo comento para esta entrega, porque se puede navegar la aplicacion sin tener que estar logueado.
+        //Lo comento porque se puede navegar la aplicacion sin tener que estar logueado.
+        //Caso contrario se tiene que descomentar y controlar en donde se esta llamando.
         /*if(!isset($_SESSION)){ 
             session_start(); 
         } 

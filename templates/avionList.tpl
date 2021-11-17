@@ -36,11 +36,10 @@
         </div>
     </div>
 
-    
-    <div id="id-div-aviones"class="col-md-8">
+    <!-- Se uso de prueba de vue-->
+    <!--div id="id-div-aviones"class="col-md-8">
         {include file='templates/vue/avionList.tpl'}
-    </div>
-    
+    </div-->    
     
 </div>
 

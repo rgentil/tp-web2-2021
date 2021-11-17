@@ -2,6 +2,7 @@
 
 require_once 'libs/Router.php';
 require_once 'Controller-api/ApiAvionController.php';
+require_once 'Controller-api/ApiComentarioController.php';
 
 // crea el router
 $router = new Router();
@@ -18,8 +19,9 @@ $router->addRoute('aviones/:ID', 'DELETE', 'ApiAvionController', 'delete');
 // Entidad comentario
 $router->addRoute('comentarios', 'GET', 'ApiComentarioController', 'get');
 $router->addRoute('comentarios/:ID', 'GET', 'ApiComentarioController', 'get');
+$router->addRoute('comentarios-avion/:ID', 'GET', 'ApiComentarioController', 'getByIdAvion');
 $router->addRoute('comentarios', 'POST', 'ApiComentarioController', 'create');
-//$router->addRoute('comentarios/:ID', 'PUT', 'ApiComentarioController', 'update');
+$router->addRoute('comentarios/:ID', 'PUT', 'ApiComentarioController', 'update');
 $router->addRoute('comentarios/:ID', 'DELETE', 'ApiComentarioController', 'delete');
 
 // rutea

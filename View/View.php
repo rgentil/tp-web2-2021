@@ -18,11 +18,13 @@ class view {
         if ($this->controlLoginHelper->estaLogueadoUsuario()){
             $this->smarty->assign('usuario_logueado',$this->controlLoginHelper->getNombreUsuarioLogueado());
             $this->smarty->assign('usuario_codigo',$this->controlLoginHelper->getCodigoUsuarioLogueado());
+            $this->smarty->assign('usuario_id',$this->controlLoginHelper->getIdUsuarioLogueado());
             if ($this->controlLoginHelper->esUsuarioAdmin()){
                 $this->smarty->assign('admin',true);
             }
         }else{
             $this->smarty->assign('usuario_logueado',null);
+            $this->smarty->assign('usuario_id',null);
         }
     }
 }

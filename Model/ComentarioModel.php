@@ -12,8 +12,8 @@ class ComentarioModel {
         $sentencia = $this->db->prepare('SELECT id_comentario, descripcion, puntuacion, id_usuario, id_avion
                                             FROM comentario c ');
         $sentencia->execute();
-        $aviones = $sentencia->fetchAll(PDO::FETCH_OBJ);
-        return $aviones;
+        $comentarios = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comentarios;
     } 
 
     function getById($id_comentario){
@@ -21,8 +21,17 @@ class ComentarioModel {
                                             FROM comentario c 
                                                 WHERE c.id_comentario = ?');
         $sentencia->execute(array($id_comentario));
-        $avion = $sentencia->fetch(PDO::FETCH_OBJ);
-        return $avion;
+        $comentario = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $comentario;
+    }
+
+    function getByIdAvion($id_avion){
+        $sentencia = $this->db->prepare('SELECT id_comentario, descripcion, puntuacion, id_usuario, id_avion
+                                            FROM comentario c 
+                                                WHERE c.id_avion = ?');
+        $sentencia->execute(array($id_avion));
+        $comentario = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $comentario;
     }
 
     function insert($descripcion,$puntuacion, $id_avion, $id_usuario){
@@ -36,7 +45,6 @@ class ComentarioModel {
         $sentencia->execute(array($id));
     }
 
-    //No esta ruteado en el router-api
     function update($descripcion, $puntuacion, $id_comentario){
         $sentencia = $this->db->prepare("UPDATE comentario SET descripcion=?, puntuacion=? WHERE id_comentario=?");
         $sentencia->execute(array($descripcion, $puntuacion, $id_comentario));

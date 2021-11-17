@@ -36,6 +36,11 @@
                     <a class="btn btn-outline-primary" href="login" role="button">Log in</a>
                 {/if}
             </div>
+
+            <input type="hidden" id="admin" name="admin" value={$admin}>
+            <input type="hidden" id="usuario_logueado" name="usuario_logueado" value={$usuario_logueado}>
+            <input type="hidden" id="usuario_id" name="usuario_id" value={$usuario_id}>
+
         </header>
 
     

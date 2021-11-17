@@ -50,6 +50,7 @@ class UsuarioView extends View{
     function showRegistro($mensaje = ""){
         $this->smarty->assign('admin',false);
         $this->smarty->assign('usuario_logueado',null);
+        $this->smarty->assign('usuario_id',null);
         $this->smarty->assign('titulo_header','Nuevo Registro');
         $this->smarty->assign('titulo_crear','Nuevo Registro');
         $this->smarty->assign('mensaje',$mensaje);
@@ -60,6 +61,7 @@ class UsuarioView extends View{
         $this->smarty->assign('admin',false);
         $this->smarty->assign('titulo_header','Aeródromo');
         $this->smarty->assign('usuario_logueado',null);
+        $this->smarty->assign('usuario_id',null);
         $this->smarty->assign('titulo_login','Bienvenido, ingrese por favor con código y password de usuario');
         $this->smarty->assign('mensajeRegExitoso','Registro exitoso.');
         $this->smarty->assign('mensaje',null);
