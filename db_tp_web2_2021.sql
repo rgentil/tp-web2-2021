@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 14-10-2021 a las 14:32:13
+-- Tiempo de generación: 17-11-2021 a las 19:39:39
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -51,8 +51,31 @@ INSERT INTO `avion` (`id_avion`, `nombre`, `fabricante`, `tipo`, `id_hangar`) VA
 (9, 'Mirage III', 'Dassault Aviation', 'Interceptor', 4),
 (10, 'Mirage IV', 'Dassault Aviation', 'Bombardero estratégico', 4),
 (11, 'AH-64 Apache', 'Hughes Helicopters/McDonnell Douglas/Boeing', 'Helicóptero de ataque', 6),
-(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7),
-(21, 'Avion 1', 'Fabricante 1', 'Tipo Avion 1', 12);
+(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7);
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `comentario`
+--
+
+CREATE TABLE `comentario` (
+  `id_comentario` int(11) NOT NULL,
+  `descripcion` varchar(500) NOT NULL,
+  `puntuacion` int(1) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_avion` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Volcado de datos para la tabla `comentario`
+--
+
+INSERT INTO `comentario` (`id_comentario`, `descripcion`, `puntuacion`, `id_usuario`, `id_avion`) VALUES
+(22, 'comentario5', 2, 5, 1),
+(29, 'ghgfhfg', 2, 11, 1),
+(30, 'ghgfhfg', 2, 11, 1),
+(33, 'uuuuuuuu', 3, 11, 1);
 
 -- --------------------------------------------------------
 
@@ -79,7 +102,7 @@ INSERT INTO `hangar` (`id_hangar`, `nombre`, `ubicacion`, `capacidad`) VALUES
 (5, 'Hangar 5', 'Norte 1-3', 2),
 (6, 'Hangar 6', 'Centro 1-2', 3),
 (7, 'Hangar 7', 'Sur 1-3', 2),
-(12, 'La patria', 'Sud oeste 1-4', 4);
+(13, 'Nuevo hangar', 'Lejos', 1);
 
 -- --------------------------------------------------------
 
@@ -92,18 +115,21 @@ CREATE TABLE `usuario` (
   `nombre` varchar(100) NOT NULL,
   `codigo` varchar(50) NOT NULL,
   `password` varchar(500) NOT NULL,
-  `rol` varchar(30) NOT NULL
+  `rol` varchar(30) NOT NULL,
+  `email` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `usuario`
 --
 
-INSERT INTO `usuario` (`id_usuario`, `nombre`, `codigo`, `password`, `rol`) VALUES
-(4, 'Administrador', 'admin', '$2y$10$SrR.vnHy/Dc14obSWNEiyeovf5eKS78DwJsqDpG2sPMpy9zXZAkCO', 'Admin'),
-(11, 'Ricardo', 'Administrador', '$2y$10$k38tIAbSTR..JkH88iVSw.bFuy2MXOrONYfKn6lqMjJGAvTeavlv.', 'Admin'),
-(12, 'Juan Carlos ', 'juanca', '$2y$10$e10uFEVDCCH2cvEZH.EC7uLCyilzh9IbGjAFIwclkILskhpxRuBpq', 'Comun'),
-(13, 'Comun', 'comun', '$2y$10$pFxTjCF.FjxRTm9IZv0nC.LBpJRWS9do7/Hk73pD5nDFx1KWu8Iri', 'Comun');
+INSERT INTO `usuario` (`id_usuario`, `nombre`, `codigo`, `password`, `rol`, `email`) VALUES
+(4, 'Administrador', 'admin', '$2y$10$SrR.vnHy/Dc14obSWNEiyeovf5eKS78DwJsqDpG2sPMpy9zXZAkCO', 'Admin', ''),
+(11, 'Ricardo', 'Administrador', '$2y$10$k38tIAbSTR..JkH88iVSw.bFuy2MXOrONYfKn6lqMjJGAvTeavlv.', 'Admin', ''),
+(12, 'Juan Carlos ', 'juanca', '$2y$10$e10uFEVDCCH2cvEZH.EC7uLCyilzh9IbGjAFIwclkILskhpxRuBpq', 'Comun', ''),
+(13, 'Comun', 'comun', '$2y$10$pFxTjCF.FjxRTm9IZv0nC.LBpJRWS9do7/Hk73pD5nDFx1KWu8Iri', 'Admin', ''),
+(22, 'Usuario Comun', 'usuariocomun', '$2y$10$LTkQk9lrfuNwfXuysBD6ueu1ooQQ35bNI/ifTGO.svodvjNWNsNMC', 'Comun', 'e3@hotmail.com'),
+(26, 'Carlos Marx', 'carlos21', '$2y$10$WZaAjUjSj7wxjKRuTyuSn.IVEdRxhmExjyBscYl1XU/XjYUthE81y', 'Admin', 'carlos21@hotmail.com');
 
 --
 -- Índices para tablas volcadas
@@ -114,6 +140,12 @@ INSERT INTO `usuario` (`id_usuario`, `nombre`, `codigo`, `password`, `rol`) VALU
 --
 ALTER TABLE `avion`
   ADD PRIMARY KEY (`id_avion`);
+
+--
+-- Indices de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  ADD PRIMARY KEY (`id_comentario`);
 
 --
 -- Indices de la tabla `hangar`
@@ -135,19 +167,25 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `avion`
 --
 ALTER TABLE `avion`
-  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+
+--
+-- AUTO_INCREMENT de la tabla `comentario`
+--
+ALTER TABLE `comentario`
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `hangar`
 --
 ALTER TABLE `hangar`
-  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id_hangar` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
