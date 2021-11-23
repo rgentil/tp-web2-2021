@@ -4,7 +4,7 @@ document.addEventListener("DOMContentLoaded", iniciarPagina);
 
 function iniciarPagina(){
     
-    const API_URL = 'http://localhost/web2/aerodromo/api/';
+    const API_URL = 'http://localhost/web2/aerodromo/api/aviones/';
 
     let app = new Vue({
         el: '#id-div-comentario-list',
@@ -15,6 +15,13 @@ function iniciarPagina(){
             errors: [],
             idComentario: null,
             idPuntuacion: null,
+            //Filtrar comentario
+            titulo_filtro: 'Filtrar comentario por puntuación',
+            idFiltroPuntos: null,
+            //Ordenamiento
+            titulo_orden: 'Ordenarar comentarios',
+            idCampo: null,
+            idOrden: null,
             //Listado de comentarios
             titulo: 'Lista de comentarios', 
             permiteComentar: false
@@ -34,16 +41,41 @@ function iniciarPagina(){
                                         };                            
                         this.idComentario = null;
                         this.idPuntuacion = null;
-                        agregarServicio(comentario);   
+                        agregarComentario(comentario);   
                     }else{
                         if (!this.idComentario) {
                             this.errors.push('Ingrese Comentario.');
-
                         }
                         if (!this.idPuntuacion) {
                             this.errors.push('Ingrese Puntuación.');
                         }
                     }
+                },
+            filtrarComentario:
+                function (e){
+                    e.preventDefault();
+                    this.errors = [];
+                    this.mensaje = '';
+                    getComentarios(this.idFiltroPuntos,this.idCampo, this.idOrden)
+                },
+            ordenar:
+                function (e){
+                    e.preventDefault();
+                    this.errors = [];
+                    this.mensaje = '';                    
+                    getComentarios(this.idFiltroPuntos, this.idCampo, this.idOrden);
+                },
+            limpiar:
+                function (e){
+                    e.preventDefault();
+                    this.errors = [];
+                    this.mensaje = '';
+                    this.idComentario = null;
+                    this.idPuntuacion = null;
+                    this.idFiltroPuntos = null;
+                    this.idCampo = null;
+                    this.idOrden = null;
+                    getComentarios(this.idFiltroPuntos, this.idCampo, this.idOrden);
                 }
           }
 
@@ -61,10 +93,31 @@ function iniciarPagina(){
     
     getComentarios();
 
-    async function getComentarios(){
-       if (idAvion != null || idAvion.value != ''){
+    async function getComentarios(filtro, ordenCampo, ordenDireccion){
+        if (idAvion != null || idAvion.value != ''){
             try {
-                let response = await fetch(`${API_URL}comentarios-avion/${idAvion.value}`);
+                ulComentarios.innerHTML = '';
+                let url = `${API_URL}${idAvion.value}/comentarios`;
+                if (ordenCampo != null && ordenCampo != ''){
+                    if (ordenDireccion != null && ordenDireccion != ''){
+                        url+=`?ordenCampo=${ordenCampo}&ordenDireccion=${ordenDireccion}`
+                    }else{
+                        url+=`?ordenCampo=${ordenCampo}`
+                    }
+                }else{
+                    if (ordenDireccion != null && ordenDireccion != ''){
+                        url+=`?ordenDireccion=${ordenDireccion}`
+                    }else{
+                        url+=`?ordenCampo=puntuacion&ordenDireccion=asc`
+                    }
+                }
+
+                if (filtro != null && filtro != ''){
+                    url += `&filtro=${filtro}`;
+                }
+
+                let response = await fetch(url);
+
                 if (response.ok && response.status == 200) {
                     let comentarios = await response.json();
                     ulComentarios.innerHTML = '';
@@ -112,7 +165,7 @@ function iniciarPagina(){
         }
     }
 
-    async function agregarServicio(comentario) {
+    async function agregarComentario(comentario) {
         try {
             let response = await fetch(`${API_URL}comentarios`, {
                 "method": "POST",

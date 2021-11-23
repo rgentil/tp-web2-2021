@@ -131,6 +131,9 @@ switch ($params[0]) {
     case 'deleteAvion': 
         $avion->deleteAvion($params[1]); 
         break;     
+    case 'deleteImagen': 
+        $avion->deleteImagen($params[1]); 
+        break;     
     case 'avionesHangar': 
         $avion->showByIdHangar($params[1]); 
         break;

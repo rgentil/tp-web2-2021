@@ -53,12 +53,29 @@ class AvionController {
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
         $mensaje_valores_requeridos = "Se debe ingresar nombre, fabricante, tipo y hangar";
-        if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
-            $this->view->showAvionAlta($mensaje_valores_requeridos);            
+
+        if ($_FILES['imagen']['name']) {
+            if ($_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/png") {
+                if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
+                    $this->view->showAvionAlta($mensaje_valores_requeridos);            
+                }else{
+                    $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'], $_FILES['imagen']);
+                    $this->showById($id);
+                }
+            }
+            else {
+                $this->view->showAvionAlta("El formato de la imágen no es correcto. Acepta .jpeg, .jpg o .png");
+                die();
+            }
         }else{
-            $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
-            $this->showById($id);
+            if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
+                $this->view->showAvionAlta($mensaje_valores_requeridos);            
+            }else{
+                $id = $this->model->insert($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar']);
+                $this->showById($id);
+            }
         }
+        
     }
 
     function updateAvion(){
@@ -70,12 +87,33 @@ class AvionController {
         else{
             $id = $_POST['id'];  
             $mensaje_valores_requeridos = "Se debe ingresar nombre, fabricante, tipo y hangar";
-            if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar'])){
+            $errorImagen = false;
+            $agregarImagen = false;
+
+            if ($_FILES['imagen']['name']) {                
+                if ($_FILES['imagen']['type'] == "image/jpeg" || $_FILES['imagen']['type'] == "image/jpg" || $_FILES['imagen']['type'] == "image/png") {
+                    $errorImagen = false;
+                    $agregarImagen = true;
+                }else{
+                    $errorImagen = true;
+                }
+            }
+
+            if (!isset($_POST['nombre']) || !isset($_POST['fabricante']) || !isset($_POST['tipo']) || !isset($_POST['idHangar']) || $errorImagen){
                 $avion = $this->model->getById($id);
                 $hangaresDisponibles = $this->model->getHangaresDisponibles($id);
-                $this->view->showAvionUpdate($avion,$hangaresDisponibles,$mensaje_valores_requeridos);
+                if ($errorImagen){
+                    $this->view->showAvionUpdate($avion,$hangaresDisponibles,"El formato de la imágen no es correcto. Acepta .jpeg, .jpg o .png");
+                }else{
+                    $this->view->showAvionUpdate($avion,$hangaresDisponibles,$mensaje_valores_requeridos);
+                }                
             }else{
-                $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
+                if ($agregarImagen){
+                    $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id, $_FILES['imagen']);
+                }else{
+                    $this->model->update($_POST['nombre'], $_POST['fabricante'], $_POST['tipo'],$_POST['idHangar'],$id);
+                }
+                
                 $this->showById($id);
             }    
         }        
@@ -85,6 +123,13 @@ class AvionController {
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
         $this->model->delete($id);
+        $this->showAll();
+    }
+
+    function deleteImagen($id){
+        $this->controlLoginHelper->checkLoggedIn();
+        $this->controlLoginHelper->checkRolLoggedIn();
+        $this->model->deleteImagen($id);
         $this->showAll();
     }
 

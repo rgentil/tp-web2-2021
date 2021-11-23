@@ -10,7 +10,7 @@ class AvionModel {
 
     function getAll(){
         $sentencia = $this->db->prepare('SELECT a.id_avion, a.nombre, a.fabricante, a.tipo, a.id_hangar, 
-                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad 
+                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad, a.imagen 
                                             FROM avion a 
                                                 LEFT JOIN hangar h ON (h.id_hangar = a.id_hangar)');
         $sentencia->execute();
@@ -20,7 +20,7 @@ class AvionModel {
 
     function getById($id_avion){
         $sentencia = $this->db->prepare('SELECT a.id_avion, a.nombre, a.fabricante, a.tipo, a.id_hangar, 
-                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad 
+                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad, a.imagen
                                                 FROM avion a 
                                                 LEFT JOIN hangar h ON (h.id_hangar = a.id_hangar) 
                                             WHERE a.id_avion = ?');
@@ -31,7 +31,7 @@ class AvionModel {
 
     function getByIdHangar($id_hangar){
         $sentencia = $this->db->prepare('SELECT a.id_avion, a.nombre, a.fabricante, a.tipo, a.id_hangar, 
-                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad 
+                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad, a.imagen 
                                             FROM avion a 
                                                 LEFT JOIN hangar h ON (h.id_hangar = a.id_hangar)
                                                 WHERE a.id_hangar = ?');
@@ -60,20 +60,40 @@ class AvionModel {
         return $hangares;
     } 
     
-    function insert($nombre, $fabricante, $tipo, $id_hangar){
-        $sentencia = $this->db->prepare('INSERT INTO avion(nombre, fabricante, tipo, id_hangar) VALUES(?, ?, ?, ?)');
-        $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar));
+    function insert($nombre, $fabricante, $tipo, $id_hangar, $imagen = null){
+        $filepath = null;
+        if ($imagen){
+            $filepath = $this->moveFile($imagen);
+        }
+        $sentencia = $this->db->prepare('INSERT INTO avion(nombre, fabricante, tipo, id_hangar, imagen) VALUES(?, ?, ?, ?,?)');
+        $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar,$filepath));
         return $this->db->lastInsertId();
+    }
+
+    function deleteImagen($id){
+        $sentencia = $this->db->prepare("UPDATE avion SET imagen = null WHERE id_avion=?");
+        $sentencia->execute(array($id));
+    }
+
+    function update($nombre, $fabricante, $tipo, $id_hangar,$id,$imagen = null){
+        $filepath = null;
+        if ($imagen){
+            $filepath = $this->moveFile($imagen);
+        }
+        $sentencia = $this->db->prepare("UPDATE avion SET nombre=?, fabricante=?, tipo=?, id_hangar=?, imagen=? WHERE id_avion=?");
+        $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar, $filepath, $id));
+    }
+
+    //  mueve la imagen y retorna la ubicación
+    private function moveFile($imagen) {
+        $filepath = "img/avion/" . uniqid() . "." . strtolower(pathinfo($imagen['name'], PATHINFO_EXTENSION));  
+        move_uploaded_file($imagen['tmp_name'], $filepath);
+        return $filepath;
     }
 
     function delete($id){
         $sentencia = $this->db->prepare('DELETE FROM avion WHERE id_avion=?');
         $sentencia->execute(array($id));
-    }
-
-    function update($nombre, $fabricante, $tipo, $id_hangar,$id){
-        $sentencia = $this->db->prepare("UPDATE avion SET nombre=?, fabricante=?, tipo=?, id_hangar=? WHERE id_avion=?");
-        $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar,$id));
     }
 
 }

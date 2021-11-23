@@ -4,7 +4,7 @@
 
     <div class="row mt-4">
         <h1>{$titulo_crear}</h1>
-        <form action="createAvion" method="post">
+        <form action="createAvion" method="post" enctype="multipart/form-data">
             {if $mensaje_valores_requeridos != null}
                 <div class="alert alert-danger" role="alert">
                     {$mensaje_valores_requeridos}
@@ -40,7 +40,15 @@
                         {/foreach}
                     </select>
                 </div>
-            </div>        
+            </div>    
+            <div class="row mb-3">
+                <label for="idImagen" class="col-sm-2 col-form-label">Imágen</label>
+                <div class="col-sm-10">
+                    <input type="file" class="form-control" name="imagen" id="idImagen">
+                </div>
+            </div>
+            
+                            
             <button type="submit" class="btn btn-outline-primary"> Guardar</button>
         
         </form>

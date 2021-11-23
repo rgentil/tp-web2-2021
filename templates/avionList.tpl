@@ -21,6 +21,10 @@
                             <a class="btn btn-outline-danger" href="deleteAvion/{$avion->id_avion}">Borrar</a>
                             - 
                             <a class="btn btn-outline-success" href="avionUpdate/{$avion->id_avion}">Actualizar</a>
+                            {if $avion->imagen != null}
+                                - 
+                                <a class="btn btn-outline-danger" href="deleteImagen/{$avion->id_avion}">Borrar Imágen</a>
+                            {/if}
                         {/if}
                     </li>
                 {/foreach}
@@ -35,11 +39,6 @@
             <a class="btn btn-outline-secondary" href="home">Aeródromo</a>
         </div>
     </div>
-
-    <!-- Se uso de prueba de vue-->
-    <!--div id="id-div-aviones"class="col-md-8">
-        {include file='templates/vue/avionList.tpl'}
-    </div-->    
     
 </div>
 

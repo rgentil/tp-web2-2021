@@ -43,7 +43,26 @@ class ApiComentarioController extends ApiController {
                 return $this->view->response('comentario','Error en los parámetros enviados', 400);
             }else{
                 $id = $params[":ID"];
-                $comentarios = $this->model->getByIdAvion($id);
+                
+                $ordenCampo = "puntuacion";
+                if(isset($_GET["ordenCampo"]) && !empty($_GET["ordenCampo"]) ){
+                    $ordenCampo = $_GET["ordenCampo"];
+                }
+                
+                $ordenDireccion = "asc";
+                if(isset($_GET["ordenDireccion"]) && !empty($_GET["ordenDireccion"]) ){
+                    $ordenDireccion = $_GET["ordenDireccion"];
+                }
+
+                $orden = "ORDER BY $ordenCampo $ordenDireccion";
+
+                $filtro = null;
+                if(isset($_GET["filtro"]) && !empty($_GET["filtro"]) ){
+                    $filtro = $_GET["filtro"];
+                }
+
+                $comentarios = $this->model->getByIdAvion($id, $orden, $filtro);
+
                 if(!empty($comentarios)) {
                     return $this->view->response('comentario',$comentarios, 200);//Si tiene valores
                 }else{
@@ -97,5 +116,5 @@ class ApiComentarioController extends ApiController {
             return $this->view->response('comentario',$th, 500);
         }        
     }
-    
+
 }
