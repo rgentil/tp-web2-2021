@@ -19,9 +19,11 @@ En adelante, se usará ítems y categoría para describir los requerimientos fun
 
 * hangar(id_hangar,nombre,ubicacion,capacidad)	
 
-* avion(id_avion,nombre,fabricante,tipo,id_hangar)	
+* avion(id_avion,nombre,fabricante,tipo,id_hangar,imagen)	
 
 * usuario(id_usuario,nombre,codigo,password,rol)
+
+* comentario(id_comentario,descripcion,puntuacion,id_usuario,id_avion)
 
 ### Características 📋
 * XAMPP
