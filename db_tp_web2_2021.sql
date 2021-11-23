@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 17-11-2021 a las 19:39:39
+-- Tiempo de generación: 23-11-2021 a las 21:35:46
 -- Versión del servidor: 10.4.19-MariaDB
 -- Versión de PHP: 8.0.6
 
@@ -32,26 +32,28 @@ CREATE TABLE `avion` (
   `nombre` varchar(100) NOT NULL,
   `fabricante` varchar(100) NOT NULL,
   `tipo` varchar(100) NOT NULL,
-  `id_hangar` int(11) NOT NULL
+  `id_hangar` int(11) NOT NULL,
+  `imagen` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Volcado de datos para la tabla `avion`
 --
 
-INSERT INTO `avion` (`id_avion`, `nombre`, `fabricante`, `tipo`, `id_hangar`) VALUES
-(1, 'F-14 Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 1),
-(2, 'MiG-29', 'Mikoyan', 'Caza polivalente', 1),
-(3, 'YF-14A Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2),
-(4, 'F-14A Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2),
-(5, 'F-14A+ Plus Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2),
-(6, 'F-14D Super Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 3),
-(7, 'F-14D Quickstricke Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 3),
-(8, 'Super Tomcat 21', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 4),
-(9, 'Mirage III', 'Dassault Aviation', 'Interceptor', 4),
-(10, 'Mirage IV', 'Dassault Aviation', 'Bombardero estratégico', 4),
-(11, 'AH-64 Apache', 'Hughes Helicopters/McDonnell Douglas/Boeing', 'Helicóptero de ataque', 6),
-(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7);
+INSERT INTO `avion` (`id_avion`, `nombre`, `fabricante`, `tipo`, `id_hangar`, `imagen`) VALUES
+(1, 'F-14 Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 1, 'img/avion/619d45794cf56.jpg'),
+(2, 'MiG-29', 'Mikoyan', 'Caza polivalente', 1, ''),
+(3, 'YF-14A Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2, ''),
+(4, 'F-14A Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2, ''),
+(5, 'F-14A+ Plus Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 2, ''),
+(6, 'F-14D Super Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 3, ''),
+(7, 'F-14D Quickstricke Tomcat', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 3, ''),
+(8, 'Super Tomcat 21', 'Grumman / Northrop Grumman', 'Interceptor, caza de superioridad aérea y caza polivalente', 4, ''),
+(9, 'Mirage III', 'Dassault Aviation', 'Interceptor', 4, ''),
+(10, 'Mirage IV', 'Dassault Aviation', 'Bombardero estratégico', 4, ''),
+(11, 'AH-64 Apache', 'Hughes Helicopters/McDonnell Douglas/Boeing', 'Helicóptero de ataque', 6, ''),
+(12, 'RAH-66 Comanche', 'Boeing Helicopters y Sikorsky Aircraft Corporation', 'Helicóptero de ataque y reconocimiento', 7, ''),
+(47, 'sss', '111111', 'vuela', 4, '');
 
 -- --------------------------------------------------------
 
@@ -72,10 +74,14 @@ CREATE TABLE `comentario` (
 --
 
 INSERT INTO `comentario` (`id_comentario`, `descripcion`, `puntuacion`, `id_usuario`, `id_avion`) VALUES
-(22, 'comentario5', 2, 5, 1),
-(29, 'ghgfhfg', 2, 11, 1),
-(30, 'ghgfhfg', 2, 11, 1),
-(33, 'uuuuuuuu', 3, 11, 1);
+(44, 'comentario 2', 2, 11, 1),
+(47, 'comentario 4', 4, 11, 1),
+(48, 'comentario 2', 2, 11, 1),
+(49, 'comentario 2', 2, 11, 1),
+(50, 'ghgfhfg', 5, 11, 1),
+(51, 'comentario 2', 3, 11, 1),
+(52, 'uuuuuuuu', 4, 11, 1),
+(53, 'comentario 2', 1, 22, 1);
 
 -- --------------------------------------------------------
 
@@ -167,13 +173,13 @@ ALTER TABLE `usuario`
 -- AUTO_INCREMENT de la tabla `avion`
 --
 ALTER TABLE `avion`
-  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `id_avion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- AUTO_INCREMENT de la tabla `comentario`
 --
 ALTER TABLE `comentario`
-  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id_comentario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=54;
 
 --
 -- AUTO_INCREMENT de la tabla `hangar`

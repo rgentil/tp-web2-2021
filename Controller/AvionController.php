@@ -18,8 +18,37 @@ class AvionController {
 
     public function showAll(){
         $this->controlLoginHelper->checkLoggedIn();
-        $aviones = $this->model->getAll();
-        $this->view->showAll($aviones);
+
+        //PAGINADO
+        //Página inicial
+        $pag_numero = 1;
+        if (isset($_GET['pagenumero']) && !empty($_GET['pagenumero'])){
+            $pag_numero = intval($_GET['pagenumero']);
+        }
+
+        //Total de items por página
+        $pag_totales_items_mostrar = 4;
+
+        $offset = ($pag_numero-1) * $pag_totales_items_mostrar;
+        $previous_page = $pag_numero - 1;
+        $next_page = $pag_numero + 1;
+
+        
+        //Total de items en la base de datos.
+        $totalAviones = $this->model->getTotalAviones();
+        
+        //Total de páginas para mostrar
+        $total_pages = intval( ceil($totalAviones->total / $pag_totales_items_mostrar) );
+        
+        //FILTROS
+        $filtro_nombre = null;
+        if (isset($_GET['filtro_nombre']) && !empty($_GET['filtro_nombre'])){
+            $filtro_nombre = $_GET['filtro_nombre'];
+        }
+
+        $aviones = $this->model->getAllPagenation($offset, $total_pages, $filtro_nombre);
+
+        $this->view->showAll($aviones,$pag_numero,$previous_page,$next_page,$total_pages);
     }
 
     public function showById($id){
@@ -129,7 +158,9 @@ class AvionController {
     function deleteImagen($id){
         $this->controlLoginHelper->checkLoggedIn();
         $this->controlLoginHelper->checkRolLoggedIn();
-        $this->model->deleteImagen($id);
+        $avion = $this->model->getById($id);
+        //Busco el path para eliminarla del disco si existe.
+        $this->model->deleteImagen($id, $avion->imagen);
         $this->showAll();
     }
 

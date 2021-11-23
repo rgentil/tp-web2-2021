@@ -9,6 +9,11 @@
                 <h2>Tipo: {$avion->tipo}</h2>
                 <h2>Hangar: {$avion->h_nombre}</h2>
                 <input type="hidden" id="id_avion" name="id_avion" value={$avion->id_avion} required>
+                {if $avion->imagen != null}
+                    <div class="col">
+                        <img src={$avion->imagen} alt={$avion->nombre} class="rounded mx-auto d-block" width="600px" height="500px">    
+                    </div>
+                {/if} 
             </div>
         </div>
         

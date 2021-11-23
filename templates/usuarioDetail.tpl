@@ -7,6 +7,7 @@
                 <h2>Nombre : {$usuario->nombre}</h2>
                 <h2>Código: {$usuario->codigo}</h2>
                 <h2>Rol: {$usuario->rol_descrip}</h2>
+                <h2>Email: {$usuario->email}</h2>
             </div>
         </div>
 

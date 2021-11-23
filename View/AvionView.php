@@ -9,14 +9,19 @@ class AvionView extends View{
         $this->smarty = new Smarty();
         $this->controlLoginHelper = new ControlLoginHelper(); 
     }
-
-    function showAll($aviones){
+    function showAll($aviones,$pag_numero,$previous_page,$next_page,$total_pages){
         $this->usuarioLogueado();
         $titulo = 'Listado de Aviones';
         $this->smarty->assign('titulo_header', $titulo);
         $this->smarty->assign('titulo_listado',$titulo);
+        $this->smarty->assign('titulo_filtrado','Búsqueda');
         $this->smarty->assign('titulo_crear','Crear Avión');
         $this->smarty->assign('aviones',$aviones);
+        $this->smarty->assign('titulo_paginacion','Paginación ---> '.$pag_numero.'/'.$total_pages);
+        $this->smarty->assign('pag_numero',$pag_numero);
+        $this->smarty->assign('previous_page',$previous_page);
+        $this->smarty->assign('next_page',$next_page);
+        $this->smarty->assign('total_pages',$total_pages);
         $this->smarty->display('templates/avionList.tpl');
     }
 

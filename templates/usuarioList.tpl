@@ -14,7 +14,7 @@
             <ul class="list-group">
                 {foreach from=$usuarios item=$usuario}
                     <li class="list-group-item list-group-item-secondary">
-                        <a href="usuario/{$usuario->id_usuario}">{$usuario->nombre}</a> - Rol {$usuario->rol_descrip} Email {$usuario->email}
+                        <a href="usuario/{$usuario->id_usuario}">{$usuario->nombre}</a> - Rol {$usuario->rol_descrip}
                         {if $usuario_codigo != $usuario->codigo}
                             - 
                             <a class="btn btn-outline-danger" href="deleteUsuario/{$usuario->id_usuario}">Borrar</a> 

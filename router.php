@@ -9,6 +9,7 @@ require_once "Controller/ErrorController.php";
 
 define('BASE_URL', '//'.$_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . dirname($_SERVER['PHP_SELF']).'/');
 
+//var_dump($_GET);
 if (!empty($_GET['accion'])) {
     $action = $_GET['accion'];
 } else {

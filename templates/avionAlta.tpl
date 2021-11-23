@@ -47,8 +47,7 @@
                     <input type="file" class="form-control" name="imagen" id="idImagen">
                 </div>
             </div>
-            
-                            
+                                        
             <button type="submit" class="btn btn-outline-primary"> Guardar</button>
         
         </form>

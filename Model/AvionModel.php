@@ -18,6 +18,26 @@ class AvionModel {
         return $aviones;
     } 
 
+    function getTotalAviones(){
+        $sentencia = $this->db->prepare('SELECT COUNT(1) as total FROM avion');
+        $sentencia->execute();
+        $totalAviones = $sentencia->fetch(PDO::FETCH_OBJ);
+        return $totalAviones;
+    } 
+
+    function getAllPagenation($pag_inicial, $pag_final, $nombre){
+        $sentencia = $this->db->prepare('SELECT a.id_avion, a.nombre, a.fabricante, a.tipo, a.id_hangar, 
+                                                h.nombre AS h_nombre, h.ubicacion, h.capacidad, a.imagen 
+                                            FROM avion a 
+                                                LEFT JOIN hangar h ON (h.id_hangar = a.id_hangar)
+                                                WHERE (:nombre IS NULL OR UPPER(a.nombre) = UPPER(:nombre) )
+                                                  LIMIT '.$pag_inicial.','.$pag_final);
+        $sentencia->execute(array(':nombre' => $nombre));
+        $aviones = $sentencia->fetchAll(PDO::FETCH_OBJ);
+        return $aviones;
+
+    } 
+
     function getById($id_avion){
         $sentencia = $this->db->prepare('SELECT a.id_avion, a.nombre, a.fabricante, a.tipo, a.id_hangar, 
                                                 h.nombre AS h_nombre, h.ubicacion, h.capacidad, a.imagen
@@ -61,16 +81,19 @@ class AvionModel {
     } 
     
     function insert($nombre, $fabricante, $tipo, $id_hangar, $imagen = null){
-        $filepath = null;
+        $filepath = '';
         if ($imagen){
             $filepath = $this->moveFile($imagen);
         }
-        $sentencia = $this->db->prepare('INSERT INTO avion(nombre, fabricante, tipo, id_hangar, imagen) VALUES(?, ?, ?, ?,?)');
+        $sentencia = $this->db->prepare('INSERT INTO avion(nombre, fabricante, tipo, id_hangar, imagen) VALUES(?, ?, ?, ?, ?)');
         $sentencia->execute(array($nombre, $fabricante, $tipo, $id_hangar,$filepath));
         return $this->db->lastInsertId();
     }
 
-    function deleteImagen($id){
+    function deleteImagen($id, $path = null){
+        if (file_exists($path)) {
+            unlink($path);
+        }
         $sentencia = $this->db->prepare("UPDATE avion SET imagen = null WHERE id_avion=?");
         $sentencia->execute(array($id));
     }
@@ -90,7 +113,7 @@ class AvionModel {
         move_uploaded_file($imagen['tmp_name'], $filepath);
         return $filepath;
     }
-
+    
     function delete($id){
         $sentencia = $this->db->prepare('DELETE FROM avion WHERE id_avion=?');
         $sentencia->execute(array($id));
