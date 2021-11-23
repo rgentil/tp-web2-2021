@@ -11,7 +11,10 @@
 _Desarrollar un sitio web dinámico que permita visualizar un conjunto de ítems cargados dinámicamente por un usuario administrador. Estos ítems deben estar modelados en el sistema mediante una relación 1 a N. Por ejemplo, se puede pensar como ítems pertenecientes a categorías, ítems que tienen un conjunto de componentes o cualquier modelo de datos deseado que se adapte a esta relación.
 En adelante, se usará ítems y categoría para describir los requerimientos funcionales, pero cada grupo lo adaptará a su modelo de datos._
 
-* [Enunciado completo](https://docs.google.com/document/d/1HJr3Edh3LlbofwLfI59l-5aOWjp5MlweKREDIIF_0pQ/edit#heading=h.wa5awy9twu6e) - Sitio moodle
+### Enunciado completo
+* [Primera parte](https://docs.google.com/document/d/1HJr3Edh3LlbofwLfI59l-5aOWjp5MlweKREDIIF_0pQ/edit#heading=h.wa5awy9twu6e) - Sitio moodle
+* [Segunda parte](https://docs.google.com/document/d/1SqwfIaZWr4YF9G4PPvRCrVRJPQhglqnokFBYbBUcuiY/edit) - Sitio moodle
+
 
 ## Aeródromo
 
@@ -19,9 +22,11 @@ En adelante, se usará ítems y categoría para describir los requerimientos fun
 
 * hangar(id_hangar,nombre,ubicacion,capacidad)	
 
-* avion(id_avion,nombre,fabricante,tipo,id_hangar)	
+* avion(id_avion,nombre,fabricante,tipo,id_hangar,imagen)	
 
 * usuario(id_usuario,nombre,codigo,password,rol)
+
+* comentario(id_comentario,descripcion,puntuacion,id_usuario,id_avion)
 
 ### Características 📋
 * XAMPP
