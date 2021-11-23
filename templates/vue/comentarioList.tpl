@@ -1,5 +1,4 @@
-{literal}
-    
+{literal}    
     <!-- Agregar un nuevo comentarios-->
     <div v-if="permiteComentar" class="row mt-4">
         <h1>{{ titulo_comentario }}</h1>

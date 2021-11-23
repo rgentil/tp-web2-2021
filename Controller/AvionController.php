@@ -18,7 +18,6 @@ class AvionController {
 
     public function showAll(){
         $this->controlLoginHelper->checkLoggedIn();
-
         //PAGINADO
         //Página inicial
         $pag_numero = 1;
@@ -33,7 +32,6 @@ class AvionController {
         $previous_page = $pag_numero - 1;
         $next_page = $pag_numero + 1;
 
-        
         //Total de items en la base de datos.
         $totalAviones = $this->model->getTotalAviones();
         

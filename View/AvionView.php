@@ -12,6 +12,7 @@ class AvionView extends View{
     function showAll($aviones,$pag_numero,$previous_page,$next_page,$total_pages){
         $this->usuarioLogueado();
         $titulo = 'Listado de Aviones';
+        $this->smarty->assign('viene_hangar', false);
         $this->smarty->assign('titulo_header', $titulo);
         $this->smarty->assign('titulo_listado',$titulo);
         $this->smarty->assign('titulo_filtrado','Búsqueda');
@@ -28,8 +29,10 @@ class AvionView extends View{
     function showAllByHangar($aviones){
         $this->usuarioLogueado();
         $titulo = 'Listado de Aviones en el Hangar ' . $aviones[0]->h_nombre;
+        $this->smarty->assign('viene_hangar', true);
         $this->smarty->assign('titulo_header', $titulo);
         $this->smarty->assign('titulo_listado',$titulo);
+        $this->smarty->assign('titulo_filtrado','Búsqueda');
         $this->smarty->assign('titulo_crear','Crear Avión');
         $this->smarty->assign('aviones',$aviones);
         $this->smarty->display('templates/avionList.tpl');

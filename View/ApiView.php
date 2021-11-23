@@ -16,8 +16,9 @@ class ApiView {
             404 => "No encontrado",
             500 => "Error en el servidor",
             501 => "No implementador"
-          );
-          return (isset($status[$code]))? $entidad . $status[$code] : $entidad . $status[500];
+        );
+        
+        return (isset($status[$code]))? $entidad . $status[$code] : $entidad . $status[500];
     }
 
 }

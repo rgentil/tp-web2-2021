@@ -41,7 +41,6 @@ class ComentarioModel {
         
         return $comentario;
     }
-
     
     function insert($descripcion,$puntuacion, $id_avion, $id_usuario){
         $sentencia = $this->db->prepare('INSERT INTO comentario(descripcion, puntuacion, id_avion, id_usuario) VALUES(?, ?, ?, ?)');

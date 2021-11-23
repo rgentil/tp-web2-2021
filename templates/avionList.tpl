@@ -9,37 +9,39 @@
         </div>
     {/if}
 
-    {if $usuario_logueado != null}
-        <div class="row mt-4 justify-content-md-center">
-            <div class="col-md-8">
-                <h1>{$titulo_filtrado}</h1>
-                <form action="aviones" method="get">
-                    <div class="row mb-3">
-                        <label for="filtro_nombre" class="col-sm-2 col-form-label">Avión</label>
-                        <div class="col-sm-10">
-                            <input type="text" class="form-control" id="filtro_nombre" name="filtro_nombre">
-                        </div>
-                    </div>
-                    <button type="submit" class="btn btn-outline-primary">Filtrar</button>
-                </form>
-            </div>    
-        </div>
-
-        <div class="row mt-4 justify-content-md-center">
-            <div class="col-md-8">
-                <h1>{$titulo_paginacion}</h1>
+    {if !$viene_hangar}
+        {if $usuario_logueado != null}
+            <div class="row mt-4 justify-content-md-center">
                 <div class="col-md-8">
-                        <a href="aviones/?pagenumero={$previous_page}">Prev</a> - 
-                        <a href="aviones/?pagenumero=1">First</a> - 
-                    {if $pag_numero >= $total_pages}
-                        <a href="aviones/?pagenumero=1">Next</a>
-                    {else}
-                        <a href="aviones/?pagenumero={$next_page}">Next</a>
-                    {/if}
+                    <h1>{$titulo_filtrado}</h1>
+                    <form action="aviones" method="get">
+                        <div class="row mb-3">
+                            <label for="filtro_nombre" class="col-sm-2 col-form-label">Avión</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" id="filtro_nombre" name="filtro_nombre">
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-outline-primary">Filtrar</button>
+                    </form>
+                </div>    
+            </div>
+
+            <div class="row mt-4 justify-content-md-center">
+                <div class="col-md-8">
+                    <h1>{$titulo_paginacion}</h1>
+                    <div class="col-md-8">
+                            <a href="aviones/?pagenumero={$previous_page}">Anterior</a> - 
+                            <a href="aviones/?pagenumero=1">Primero</a> - 
+                        {if $pag_numero >= $total_pages}
+                            <a href="aviones/?pagenumero=1">Siguiente</a>
+                        {else}
+                            <a href="aviones/?pagenumero={$next_page}">Siguiente</a>
+                        {/if}
+                    </div>   
                 </div>   
-            </div>   
-        </div>
-    
+            </div>
+        
+        {/if}
     {/if}
 
     <div class="row mt-4 justify-content-md-center">
